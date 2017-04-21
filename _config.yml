@@ -10,8 +10,8 @@ name: "王洪军个人博客"
 url: https://wanghongjun2014.github.io
 domain: wanghongjun2014.github.io
 all_categories: [
-["code", "技术","/posts/android.html"],
-["lift", "生活","/posts/read.html"],
+["code", "技术","/posts/code.html"],
+["lift", "生活","/posts/life.html"],
 ["about", "关于","/about.html"]
 ]
 
