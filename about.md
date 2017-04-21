@@ -4,25 +4,18 @@ title: "关于：About"
 ---
 Welcome to visit my blog!
 
-#### 1.Personal Info
-Name: Xuewen Pan(潘学文)  
-Gender: Male  
-City: Wuhan, China  
-Career: Software developer(Android&Linux&Web)  
+#### 1.个人信息
+Name: hongjun wang(王洪军)   
+City: 北京  
+Career: 程序员(php & python & mac & shell)  
 
-#### 2.My Links
-Blog: <http://www.panxw.com>  
-GitHub: <https://github.com/panxw>  
-LinkedIn: <http://www.linkedin.com/in/panxw>  
+#### 2.相关链接
+Blog: <wanghongjun2014.github.io>  
+GitHub: <https://github.com/wanghongjun2014>  
 
+#### 3.联系方式
+Email: wanghongjun2014#163.com  
+QQ: 1583291613
 
-#### 3.Contract
-Email: winfirm#163.com  
-QQ: 85902258  
-
-### 4.Domain For Sale
-danbaili.com  
-fangxinyu.com  
-maicaiwa.com  
-babytoycar.com  
-youth168.com  
+### 4.友情链接
+xwenliang.cn
