@@ -16,6 +16,3 @@ GitHub: <https://github.com/wanghongjun2014>
 #### 3.联系方式
 Email: wanghongjun2014#163.com  
 QQ: 1583291613
-
-### 4.友情链接
-xwenliang.cn

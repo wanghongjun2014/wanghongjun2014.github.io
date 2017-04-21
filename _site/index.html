@@ -83,27 +83,42 @@
           <!-- Loop output paged posts -->
 
 <div style="font-size:16px;">
-  <a href="/posts/which-more-important.html">
-    测试文字？[测试]
+  <a href="/posts/php-java-aes.html">
+    php和java中对aes加密方式的不同
   </a> 
   <div class="post-date">
-	<span class="glyphicon glyphicon-time"></span>
 	2010-01-01
   </div>
 </div>
 <hr>
-<h3 id="测试文字">测试文字</h3>
-<pre><code>1，健康：人类的第一资产，  
-2，财富：资产的最重要诠释，  
-3，智慧：改变命运的资本，  
-4，婚姻与家庭：身心的避风港，  
-5，心灵：深查世界的棱镜，  
-6，友谊：一生快乐源泉，  
-7，人生的意义：成长的源动力。  
+<p>周末的时候写了一个联通代扣取话费需求的接口,由于文档中只给出了java aes加密的示例, 加密方式为PKCS5, 但是这种方
+式php中是不支持的(我用java的入参调试了n久, 结果都是错的, 坑了很长时间, 翻阅很多文档终于找到了方案), php的解决方案如下:</p>
+
+<pre><code> //加密函数
+ function encrypt($plaintext, $key) {
+     $plaintext = pkcs5_pad($plaintext, 16);
+     return bin2hex(mcrypt_encrypt(MCRYPT_RIJNDAEL_128, hex2bin($key), $plaintext, MCRYPT_MODE_ECB));
+ }
+ 
+ //解密函数
+ function decrypt($encrypted, $key) {
+     $decrypted = mcrypt_decrypt(MCRYPT_RIJNDAEL_128, hex2bin($key), hex2bin($encrypted), MCRYPT_MODE_ECB);
+     $padSize = ord(substr($decrypted, -1));
+     return substr($decrypted, 0, $padSize*-1);
+ }
+ 
+ //pad偏移函数
+ function pkcs5_pad ($text, $blocksize)
+ {
+     $pad = $blocksize - (strlen($text) % $blocksize);
+     return $text . str_repeat(chr($pad), $pad);
+ }
 </code></pre>
 
+<p>参考文档: <a href="http://stackoverflow.com/questions/17835726/aes-encryption-using-java-and-php" title="aes">http://stackoverflow.com/questions/17835726/aes-encryption-using-java-and-php</a></p>
 
-	<p><h4><a href="/posts/which-more-important.html">阅读全文 &raquo;</a></h4></p>
+
+	<p><h4><a href="/posts/php-java-aes.html">阅读全文 &raquo;</a></h4></p>
 <hr>
 
 
@@ -184,8 +199,8 @@
                 <ul class="list-unstyled">
 				
                   <li>
-                    <a href="/posts/which-more-important.html">
-                      测试文字？[测试]
+                    <a href="/posts/php-java-aes.html">
+                      php和java中对aes加密方式的不同
                     </a>
                   </li>
 				  
