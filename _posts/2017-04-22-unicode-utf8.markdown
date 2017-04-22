@@ -4,35 +4,52 @@ category: "code"
 title:  "acsii-unicode-utf8编码的来源以及关系"
 tags: [unicode, utf8]
 ---
-  
-  
-周末的时候写了一个联通代扣取话费需求的接口,由于文档中只给出了java aes加密的示例, 加密方式为PKCS5, 但是这种方
-式php中是不支持的(我用java的入参调试了n久, 结果都是错的, 坑了很长时间, 翻阅很多文档终于找到了方案), php的解决方案如下:
-    
+
+周末的时候细下心来查询整理下了一下字符串编码的来源以及各种格式之间的关系,以下纯属自己的理解思路,如有误,欢迎指出:
+
+***
+
+1. 关于ascii码
 ```
- //加密函数
- function encrypt($plaintext, $key) {
-     $plaintext = pkcs5_pad($plaintext, 16);
-     return bin2hex(mcrypt_encrypt(MCRYPT_RIJNDAEL_128, hex2bin($key), $plaintext, MCRYPT_MODE_ECB));
- }
- 
- //解密函数
- function decrypt($encrypted, $key) {
-     $decrypted = mcrypt_decrypt(MCRYPT_RIJNDAEL_128, hex2bin($key), hex2bin($encrypted), MCRYPT_MODE_ECB);
-     $padSize = ord(substr($decrypted, -1));
-     return substr($decrypted, 0, $padSize*-1);
- }
- 
- //pad偏移函数
- function pkcs5_pad ($text, $blocksize)
- {
-     $pad = $blocksize - (strlen($text) % $blocksize);
-     return $text . str_repeat(chr($pad), $pad);
- }
+最早的时候计算机是由老外发明的, 他们只把127个字符编码到计算机中, 其中包括大小写字母和一些特殊符号, 这个
+编码表被称为ASCII编码,比如大写字母A的编码是65,小写字母z的编码是122, 所以针对ascii编码而言, 1个字节(8
+个byte)足以了, 因为1个字节最大二进制表示为 11111111, 十进制位256
 ```
-    
-参考文档: [http://stackoverflow.com/questions/17835726/aes-encryption-using-java-and-php](http://stackoverflow.com/questions/17835726/aes-encryption-using-java-and-php "aes")
-    
-    
+2. 关于中文编码
+```
+第一条说的英文, 对于中文而言, 1个字节明显不够, 刚刚百度查了下, 中国的汉字大约有10W多个, 至少2个字节吧,
+2个字节最大为 1111111111111111十进制数位 65535 ,所以中国就出现了GBK系列的编码, 但是如果每个国家都制定自己的一套编码那岂不是乱套了吗, 所以为了统一unicode编码就出现了
+```
+3. unicode编码
+```
+unicode把所有的编码都统一到一套编码里, 它的标准也在不停的扩展, 最常用的是用两个字节表示一个字符(这个地
+方的字符是不区分英文还是中文的), 所以到目前为止, ascii码和unicode编码的区别就是前者采用一个字节编码(其实连一个字节都用不上,总共127个字符, 7个byte正好就够了), 后者用两个字节但是如果你写的文本全是英文的话,
+采取unicode编码是不是就有点浪费空间了呢, 对于存储和传输都是十分不利的, 比如字母A在ascii编码中存储的二
+进制为01000001, 但是在unicode编码中为 00000000 01000001, 为了解决这种情况, 就出现了一种变长的unicode编码, 被称为 utf-8 编码
+```
+4. utf-8编码
+```
+utf-8规定, 把一个unicode字符编码成1-6个字节, 常用的英文被编码成1个字节(unicode是2个字节), 中文一般
+用3个字节(unicode也是2个字节), 只有那些很生僻的汉字才会用到4-6个字节
+```
+
+***
+
+| 字符 | ASCII码 |  unicode编码 | utf-8编码
+| A  | --01000001-- | --00000000 01000001-- | --01000001--
+| 中  | --x-- | --01001110 00101101-- | --11100100 10111000 10101101--
+
+***
+
+
+```
+另外, 在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。用记事本编辑的时候，从文件读取的UTF-8字符被转换为Unicode字符到内存里，编辑完成后，保存的时候再把Unicode转换为UTF-8保存到文件
+```
+
+
+
+
+
+
 
 
