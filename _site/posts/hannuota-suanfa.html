@@ -4,9 +4,9 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="description" content="Tags - 王洪军个人博客 - 作者:王洪军"/> 
-	
-    <title>Tags - 王洪军个人博客</title>
+    <meta name="description" content="汉诺塔算法 - 王洪军个人博客 - 作者:王洪军"/> 
+	<meta name="keywords" content="汉诺塔"/>
+    <title>汉诺塔算法 - 王洪军个人博客</title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet"/>
     <!-- Custom CSS -->
@@ -81,199 +81,78 @@
       <div class="row">
         <!-- Blog Entries Column -->
         <div class="col-md-8">
-          <svg class="cloud" style="width:95%;height:450px">
-    <g></g>
-</svg>
-<div class="tag_posts">
+          <!-- Navi -->
+<a href="/">首页</a>&nbsp;>&nbsp;<a href="/posts/code.html">技术</a>&nbsp;>&nbsp;正文
+<!-- Title -->
+<h3>汉诺塔算法</h3>
+<b>标签：</b><a href="/tags.html#汉诺塔"><i>汉诺塔</i></a>
+<div class="post-date">
+	<span class="glyphicon glyphicon-time"></span>
+	2017-04-23
+</div>
+<br/>
+
+<!-- content -->
+<div style="text-indent:2em;">
+<p>下午研究下汉诺塔算法, 挺有意思的, 大体示意图如下:
+<img src="/assets/hannuota.png" alt="hannuota" title="汉诺塔" /></p>
+
+<p>说明:A.B.C分别表示三根柱子, 1，2，3分别表示三个圆盘, 并且数字越大表示圆盘越大, 现在我们需要将A上的全部圆盘移动到C上</p>
+<ol>
+  <li>只有一个圆盘1的情况, 直接从<strong>A-&gt;C</strong></li>
+  <li>有2个圆盘1 2, 则 A-&gt;B  <strong>A-&gt;C</strong> B-&gt;C</li>
+  <li>有3个圆盘1 2 3的情况下, 总共需要7步。 A-&gt;C A-&gt;B C-&gt;B <strong>A-&gt;C</strong> B-&gt;A B-&gt;C A-&gt;C</li>
+</ol>
+
+<p>分析过程, 不管有几个盘子, 最重要的就是<strong>A-&gt;C</strong>(步骤中加粗)这一步, 也就是把数字最大的盘子移动到C柱子上, 以3个盘子为例, 在A-&gt;C步骤的上面表示把1号和2号盘子
+从起点A移动到终点B, 下面表示把1号盘子和2号盘子从起点B移动到终点C, 所以可以用一种递归的思想表示这个过程</p>
+<pre><code>假如函数原型是move(n, A, B, C)
+#上面的部分: n-1个圆盘从A-&gt;B
+move(n-1, A, C, B)
+#中间部分, 号码最大的盘子从A-&gt;C
+move(1, A, B, C)
+#下面部分: n-1个圆盘从B-&gt;C
+move(n-1, B, A, C)
+</code></pre>
+
+<p>算法代码为</p>
+<pre><code>#!/usr/local/bin/python3
+# _*_ coding: utf-8 _*_
+
+def move(n, a, b, c):
+    if n == 1:
+        print(a, '-&gt;', c)
+    else:
+        move(n-1, a, c, b)
+        move(1, a, b, c)
+        move(n-1, b, a, c)
+
+count = input("请输入要移动到圆盘个数: ")
+move(int(count), 'A', 'B', 'C')
+</code></pre>
+<p>效果为:</p>
+
+<p><img src="/assets/hannuota-result.png" alt="result" title="结果" /></p>
+
 </div>
 
-<script src="/js/d3.js"></script>
+<br/>
+<b>原创文章，转载请注明出处！</b>
+<br/>
+<b>本文链接：</b><a href="http://localhost:4000/posts/hannuota-suanfa.html" title="">http://localhost:4000/posts/hannuota-suanfa.html</a>
 
-<script src="/js/d3.layout.cloud.js"></script>
-
-<script>
-    var tags = [
-        
-            {
-                tag: 'aes',
-                freq: 1,
-                posts: [
-                    
-                        {
-                            title: 'php和java中对aes加密方式的不同',
-                            url: '/posts/php-java-aes.html',
-                            date: '2017-04-21'
-                        },
-                    
-                ]
-            },
-        
-            {
-                tag: 'php',
-                freq: 1,
-                posts: [
-                    
-                        {
-                            title: 'php和java中对aes加密方式的不同',
-                            url: '/posts/php-java-aes.html',
-                            date: '2017-04-21'
-                        },
-                    
-                ]
-            },
-        
-            {
-                tag: 'java',
-                freq: 1,
-                posts: [
-                    
-                        {
-                            title: 'php和java中对aes加密方式的不同',
-                            url: '/posts/php-java-aes.html',
-                            date: '2017-04-21'
-                        },
-                    
-                ]
-            },
-        
-            {
-                tag: 'unicode',
-                freq: 1,
-                posts: [
-                    
-                        {
-                            title: 'acsii-unicode-utf8编码的来源以及关系',
-                            url: '/posts/unicode-utf8.html',
-                            date: '2017-04-22'
-                        },
-                    
-                ]
-            },
-        
-            {
-                tag: 'utf8',
-                freq: 1,
-                posts: [
-                    
-                        {
-                            title: 'acsii-unicode-utf8编码的来源以及关系',
-                            url: '/posts/unicode-utf8.html',
-                            date: '2017-04-22'
-                        },
-                    
-                ]
-            },
-        
-            {
-                tag: '汉诺塔',
-                freq: 1,
-                posts: [
-                    
-                        {
-                            title: '汉诺塔算法',
-                            url: '/posts/hannuota-suanfa.html',
-                            date: '2017-04-23'
-                        },
-                    
-                ]
-            },
-        
-    ];
-    var minSize = 24, maxSize = 48;
-    var minFreq = 1;
-    var maxFreq = tags.reduce(function(memo, tag) {
-        if (tag.freq > memo) {
-            memo = tag.freq;
-        }
-        return memo;
-    }, 0);
-    var width = $('.cloud').width(), height = $('.cloud').height();
-    var fill = d3.scale.category10();
-    function scale(freq, minFreq, maxFreq, minSize, maxSize) {
-        return minSize + Math.floor((freq - minFreq) / (maxFreq - minFreq) * (maxSize - minSize));
-    }
-    function showPosts(tagContent) {
-        var tag = tags.filter(function(e) { return e.tag == tagContent; });
-        if (tag.length == 0) {
-            return;
-        }
-        tag = tag[0];
-        var $ul = $('<ul></ul>').append(tag.posts.map(function(post) {
-            var $li = $('<li></li>');
-            $li.html(post.date + ' - ' + '<a href="' + post.url + '">' + post.title + '</a>');
-            return $li;
-        }));
-        $('.tag_posts').slideUp('normal', function(e) {
-            $('.tag_posts').empty().append($('<div class="tag_title">' + tagContent + '</div>')).append($ul).slideDown('normal');
-        });
-    }
-    
-    if (location.hash != '') {
-        showPosts(location.hash.substring(1));
-    }
-    
-    function draw(words) {
-        d3.select('.cloud g')
-            .attr('transform', 'translate(' + [width / 2, height / 2] + ')')
-            .selectAll('text')
-            .data(words)
-            .enter()
-            .append('text')
-            .style('font-size', function(d) {
-                return d.size + 'px'
-            })
-            .style('fill', function(d, i) {
-                return fill(i);
-            })
-            .style('font-weight', function(d) {
-                return 'bold';
-            })
-            .style('font-family', 'Microsoft YaHei')
-            .style('cursor', 'pointer')
-            .text(function(d) {
-                return d.text;
-            })
-            .attr("text-anchor", "middle")
-            .attr("transform", function(d) {
-                return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
-            })
-            .on('mouseover', function(d) {
-                d3.select(this).style('opacity', '0.5');
-            })
-            .on('mouseout', function(d) {
-                d3.select(this).style('opacity', '1');
-            })
-            .on('click', function(d) {
-                showPosts(d.text);
-            });
-    }
-    
-    var layout = d3.layout.cloud()
-        .size([width, height])
-        .words(tags.map(function(d) {
-            return {
-                text: d.tag,
-                size: scale(d.freq, minFreq, maxFreq, minSize, maxSize)
-            };
-        }).sort(function(a, b) {
-            return b.size - a.size;
-        }))
-        .padding(1)
-        .rotate(function() {
-            return ~~(Math.random() * 3 - 1) * 30;
-        })
-        .spiral('archimedean')
-        .font('Microsoft Yahei')
-        .fontSize(function(d) {
-            return d.size;
-        })
-        .on('end', draw);
-        
-    layout.start();
-    
-</script>
-
-
+<!-- next and previous -->
+<div style="margin-top:15px; margin-bottom:10px">
+  
+  <span class="next">
+    上篇：
+    <a href="/posts/unicode-utf8.html">
+      acsii-unicode-utf8编码的来源以及关系
+    </a>
+  </span>
+   
+  
+</div>
 <hr>
 <!-- Blog Comments -->
 <div class="media">

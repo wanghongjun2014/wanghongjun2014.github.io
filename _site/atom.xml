@@ -4,12 +4,59 @@
  <title></title>
  <link href="http://wanghongjun2014.github.io/atom.xml" rel="self"/>
  <link href="http://wanghongjun2014.github.io"/>
- <updated>2017-04-22T00:50:28-07:00</updated>
+ <updated>2017-04-23T02:42:36-07:00</updated>
  <author>
    <name>王洪军</name>
    <email>wanghongjun2014#163.com</email>
  </author>
 
+ 
+ <entry>
+   <title>汉诺塔算法</title>
+   <link href="http://wanghongjun2014.github.io/posts/hannuota-suanfa.html"/>
+   <updated>2017-04-23T00:00:00-07:00</updated>
+   <id>/posts/hannuota-suanfa</id>
+   <content type="html">&lt;p&gt;下午研究下汉诺塔算法, 挺有意思的, 大体示意图如下:
+&lt;img src=&quot;/assets/hannuota.png&quot; alt=&quot;hannuota&quot; title=&quot;汉诺塔&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;说明:A.B.C分别表示三根柱子, 1，2，3分别表示三个圆盘, 并且数字越大表示圆盘越大, 现在我们需要将A上的全部圆盘移动到C上&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;只有一个圆盘1的情况, 直接从&lt;strong&gt;A-&amp;gt;C&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;有2个圆盘1 2, 则 A-&amp;gt;B  &lt;strong&gt;A-&amp;gt;C&lt;/strong&gt; B-&amp;gt;C&lt;/li&gt;
+  &lt;li&gt;有3个圆盘1 2 3的情况下, 总共需要7步。 A-&amp;gt;C A-&amp;gt;B C-&amp;gt;B &lt;strong&gt;A-&amp;gt;C&lt;/strong&gt; B-&amp;gt;A B-&amp;gt;C A-&amp;gt;C&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;分析过程, 不管有几个盘子, 最重要的就是&lt;strong&gt;A-&amp;gt;C&lt;/strong&gt;(步骤中加粗)这一步, 也就是把数字最大的盘子移动到C柱子上, 以3个盘子为例, 在A-&amp;gt;C步骤的上面表示把1号和2号盘子
+从起点A移动到终点B, 下面表示把1号盘子和2号盘子从起点B移动到终点C, 所以可以用一种递归的思想表示这个过程&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;假如函数原型是move(n, A, B, C)
+#上面的部分: n-1个圆盘从A-&amp;gt;B
+move(n-1, A, C, B)
+#中间部分, 号码最大的盘子从A-&amp;gt;C
+move(1, A, B, C)
+#下面部分: n-1个圆盘从B-&amp;gt;C
+move(n-1, B, A, C)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;算法代码为&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#!/usr/local/bin/python3
+# _*_ coding: utf-8 _*_
+
+def move(n, a, b, c):
+    if n == 1:
+        print(a, '-&amp;gt;', c)
+    else:
+        move(n-1, a, c, b)
+        move(1, a, b, c)
+        move(n-1, b, a, c)
+
+count = input(&quot;请输入要移动到圆盘个数: &quot;)
+move(int(count), 'A', 'B', 'C')
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;效果为:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/hannuota-result.png&quot; alt=&quot;result&quot; title=&quot;结果&quot; /&gt;&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>acsii-unicode-utf8编码的来源以及关系</title>

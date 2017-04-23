@@ -83,6 +83,58 @@
           <!-- Loop output paged posts -->
 
 <div style="font-size:16px;">
+  <a href="/posts/hannuota-suanfa.html">
+    汉诺塔算法
+  </a> 
+  <div class="post-date">
+	2017-04-23
+  </div>
+</div>
+<hr>
+<p>下午研究下汉诺塔算法, 挺有意思的, 大体示意图如下:
+<img src="/assets/hannuota.png" alt="hannuota" title="汉诺塔" /></p>
+
+<p>说明:A.B.C分别表示三根柱子, 1，2，3分别表示三个圆盘, 并且数字越大表示圆盘越大, 现在我们需要将A上的全部圆盘移动到C上</p>
+<ol>
+  <li>只有一个圆盘1的情况, 直接从<strong>A-&gt;C</strong></li>
+  <li>有2个圆盘1 2, 则 A-&gt;B  <strong>A-&gt;C</strong> B-&gt;C</li>
+  <li>有3个圆盘1 2 3的情况下, 总共需要7步。 A-&gt;C A-&gt;B C-&gt;B <strong>A-&gt;C</strong> B-&gt;A B-&gt;C A-&gt;C</li>
+</ol>
+
+<p>分析过程, 不管有几个盘子, 最重要的就是<strong>A-&gt;C</strong>(步骤中加粗)这一步, 也就是把数字最大的盘子移动到C柱子上, 以3个盘子为例, 在A-&gt;C步骤的上面表示把1号和2号盘子
+从起点A移动到终点B, 下面表示把1号盘子和2号盘子从起点B移动到终点C, 所以可以用一种递归的思想表示这个过程</p>
+<pre><code>假如函数原型是move(n, A, B, C)
+#上面的部分: n-1个圆盘从A-&gt;B
+move(n-1, A, C, B)
+#中间部分, 号码最大的盘子从A-&gt;C
+move(1, A, B, C)
+#下面部分: n-1个圆盘从B-&gt;C
+move(n-1, B, A, C)
+</code></pre>
+
+<p>算法代码为</p>
+<pre><code>#!/usr/local/bin/python3
+# _*_ coding: utf-8 _*_
+
+def move(n, a, b, c):
+    if n == 1:
+        print(a, '-&gt;', c)
+    else:
+        move(n-1, a, c, b)
+        move(1, a, b, c)
+        move(n-1, b, a, c)
+
+count = input("请输入要移动到圆盘个数: ")
+move(int(count), 'A', 'B', 'C')
+</code></pre>
+<p>效果为:</p>
+
+<p><img src="/assets/hannuota-result.png" alt="result" title="结果" /></p>
+
+	<p><h4><a href="/posts/hannuota-suanfa.html">阅读全文 &raquo;</a></h4></p>
+<hr>
+
+<div style="font-size:16px;">
   <a href="/posts/unicode-utf8.html">
     acsii-unicode-utf8编码的来源以及关系
   </a> 
@@ -270,6 +322,12 @@
 			<div class="row">
                             <div class="col-lg-12">
                 <ul class="list-unstyled">
+				
+                  <li>
+                    <a href="/posts/hannuota-suanfa.html">
+                      汉诺塔算法
+                    </a>
+                  </li>
 				
                   <li>
                     <a href="/posts/unicode-utf8.html">
