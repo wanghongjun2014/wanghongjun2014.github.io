@@ -83,6 +83,43 @@
           <!-- Loop output paged posts -->
 
 <div style="font-size:16px;">
+  <a href="/posts/yanghui-sanjiao.html">
+    杨辉三角
+  </a> 
+  <div class="post-date">
+	2017-04-26
+  </div>
+</div>
+<hr>
+<p>算法代码为</p>
+<pre><code>#!/usr/local/bin/python3
+# _*_ coding: utf-8 _*_
+
+def triangle(max):
+    q = [1]
+    n = 0
+    while n &lt; max:
+        print(q)
+        for i in range(1, len(q)):
+            q[i] = p[i-1] + p[i]
+
+        q.append(1)
+        n = n + 1
+        p = q[:]
+
+
+
+triangle(6)
+
+</code></pre>
+<p>效果为:</p>
+
+<p><img src="/assets/yanghui-sanjiao.png" alt="result" title="结果" /></p>
+
+	<p><h4><a href="/posts/yanghui-sanjiao.html">阅读全文 &raquo;</a></h4></p>
+<hr>
+
+<div style="font-size:16px;">
   <a href="/posts/hannuota-suanfa.html">
     汉诺塔算法
   </a> 
@@ -322,6 +359,12 @@ move(int(count), 'A', 'B', 'C')
 			<div class="row">
                             <div class="col-lg-12">
                 <ul class="list-unstyled">
+				
+                  <li>
+                    <a href="/posts/yanghui-sanjiao.html">
+                      杨辉三角
+                    </a>
+                  </li>
 				
                   <li>
                     <a href="/posts/hannuota-suanfa.html">

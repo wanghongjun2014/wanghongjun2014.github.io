@@ -6,8 +6,6 @@ tags: [汉诺塔]
 ---
 
 
-```
-
 算法代码为
 ```
 #!/usr/local/bin/python3

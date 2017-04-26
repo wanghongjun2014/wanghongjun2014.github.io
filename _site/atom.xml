@@ -4,12 +4,44 @@
  <title></title>
  <link href="http://wanghongjun2014.github.io/atom.xml" rel="self"/>
  <link href="http://wanghongjun2014.github.io"/>
- <updated>2017-04-25T19:39:39-07:00</updated>
+ <updated>2017-04-26T01:43:06-07:00</updated>
  <author>
    <name>王洪军</name>
    <email>wanghongjun2014#163.com</email>
  </author>
 
+ 
+ <entry>
+   <title>杨辉三角</title>
+   <link href="http://wanghongjun2014.github.io/posts/yanghui-sanjiao.html"/>
+   <updated>2017-04-26T00:00:00-07:00</updated>
+   <id>/posts/yanghui-sanjiao</id>
+   <content type="html">&lt;p&gt;算法代码为&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#!/usr/local/bin/python3
+# _*_ coding: utf-8 _*_
+
+def triangle(max):
+    q = [1]
+    n = 0
+    while n &amp;lt; max:
+        print(q)
+        for i in range(1, len(q)):
+            q[i] = p[i-1] + p[i]
+
+        q.append(1)
+        n = n + 1
+        p = q[:]
+
+
+
+triangle(6)
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;效果为:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/yanghui-sanjiao.png&quot; alt=&quot;result&quot; title=&quot;结果&quot; /&gt;&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>汉诺塔算法</title>
