@@ -1,0 +1,36 @@
+---
+layout: post
+category: "code"
+title:  "常用的各种linux系统安装nodejs"
+tags: [nodejs]
+---
+
+有的时候node源码下载编译安装的时候会有各种依赖包的版本问题, 所以采用命令方式安装比较简单, 如下:
+
+### Debian7/8 和 Ubuntu12/14/16
+nodejs>=6.x
+```
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
+nodejsv7:
+```
+curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
+### Centos Or Fedora
+nodejs >= 6.x
+```
+curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -
+yum -y install nodejs
+```
+
+nodejs v7
+```
+curl --silent --location https://rpm.nodesource.com/setup_7.x | bash -
+yum -y install nodejs
+```
+当然还有些0.10低版本之类的node就不考虑的, out了
+
