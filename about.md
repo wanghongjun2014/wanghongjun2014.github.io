@@ -7,7 +7,7 @@ Welcome to visit my blog!
 #### 1.个人信息
 Name: hongjun wang(王洪军)   
 City: 北京  
-Company : 新浪微博研发中心
+Company : 新浪微博研发中心  
 Career: 程序员(php & python & mac & shell)  
 
 #### 2.相关链接
