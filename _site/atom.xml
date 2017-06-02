@@ -4,7 +4,7 @@
  <title></title>
  <link href="http://wanghongjun2014.github.io/atom.xml" rel="self"/>
  <link href="http://wanghongjun2014.github.io"/>
- <updated>2017-06-01T05:08:11-07:00</updated>
+ <updated>2017-06-01T19:45:10-07:00</updated>
  <author>
    <name>王洪军</name>
    <email>wanghongjun2014#163.com</email>
@@ -43,7 +43,8 @@ d.print_name()
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;其中type函数包括三个参数, 第一个是类的名字, 第二个可以理解成继承的类,但要是元组格式, 第三个参数是个dict类型, 里面可以包含类的成员变量
-,也可以包含类的成员函数&lt;/p&gt;
+,也可以包含类的成员函数—-其实当你用class定义一个类的时候, python解释器在遇到class的时候只会浏览检测一下class的语法之类的东西, 然后接着会用
+内置的type函数来创建类.&lt;/p&gt;
 
 </content>
  </entry>

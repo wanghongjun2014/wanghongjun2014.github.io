@@ -2,29 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="483ff563-c314-4ccc-a05e-cdd75ecc9e58" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/wanghongjun2014.github.io.iml" afterPath="$PROJECT_DIR$/.idea/wanghongjun2014.github.io.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/404.html" afterPath="$PROJECT_DIR$/_site/404.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/about.html" afterPath="$PROJECT_DIR$/_site/about.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/archives.html" afterPath="$PROJECT_DIR$/_site/archives.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/atom.xml" afterPath="$PROJECT_DIR$/_site/atom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/categories.html" afterPath="$PROJECT_DIR$/_site/categories.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/faqs.html" afterPath="$PROJECT_DIR$/_site/faqs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/index.html" afterPath="$PROJECT_DIR$/_site/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/links.html" afterPath="$PROJECT_DIR$/_site/links.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/posts/android.html" afterPath="$PROJECT_DIR$/_site/posts/android.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/posts/code.html" afterPath="$PROJECT_DIR$/_site/posts/code.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/posts/hannuota-suanfa.html" afterPath="$PROJECT_DIR$/_site/posts/hannuota-suanfa.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/posts/life.html" afterPath="$PROJECT_DIR$/_site/posts/life.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/posts/nodejs.html" afterPath="$PROJECT_DIR$/_site/posts/nodejs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/posts/other.html" afterPath="$PROJECT_DIR$/_site/posts/other.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/posts/php-java-aes.html" afterPath="$PROJECT_DIR$/_site/posts/php-java-aes.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/posts/program.html" afterPath="$PROJECT_DIR$/_site/posts/program.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/posts/read.html" afterPath="$PROJECT_DIR$/_site/posts/read.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/posts/unicode-utf8.html" afterPath="$PROJECT_DIR$/_site/posts/unicode-utf8.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/posts/web.html" afterPath="$PROJECT_DIR$/_site/posts/web.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/posts/yanghui-sanjiao.html" afterPath="$PROJECT_DIR$/_site/posts/yanghui-sanjiao.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/tags.html" afterPath="$PROJECT_DIR$/_site/tags.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_posts/2017-06-01-python-type.markdown" afterPath="$PROJECT_DIR$/_posts/2017-06-01-python-type.markdown" />
     </list>
     <ignored path="wanghongjun2014.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -67,8 +45,8 @@
       <file leaf-file-name="2017-06-01-python-type.markdown" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/_posts/2017-06-01-python-type.markdown">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+            <state relative-caret-position="703">
+              <caret line="37" column="14" lean-forward="false" selection-start-line="37" selection-start-column="14" selection-end-line="37" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -277,12 +255,12 @@
       <workItem from="1492938606163" duration="4238000" />
       <workItem from="1493016424473" duration="7067000" />
       <workItem from="1494383165763" duration="1196000" />
-      <workItem from="1496318536757" duration="351000" />
+      <workItem from="1496318536757" duration="1021000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21980000" />
+    <option name="totallyTimeSpent" value="22650000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -561,8 +539,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/_posts/2017-06-01-python-type.markdown">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state relative-caret-position="703">
+          <caret line="37" column="14" lean-forward="false" selection-start-line="37" selection-start-column="14" selection-end-line="37" selection-end-column="14" />
           <folding />
         </state>
       </provider>
