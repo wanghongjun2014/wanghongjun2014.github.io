@@ -12,7 +12,8 @@ domain: wanghongjun2014.github.io
 all_categories: [
 ["code", "技术","/posts/code.html"],
 ["lift", "生活","/posts/life.html"],
-["about", "关于","/about.html"]
+["about", "关于","/about.html"],
+["smallcode", "一些实用的小程序", "/smallcode.html"]
 ]
 
 paginate: 8

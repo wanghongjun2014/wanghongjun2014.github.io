@@ -4,9 +4,9 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="description" content="分类：Categories - 王洪军个人博客 - 作者:王洪军"/> 
+    <meta name="description" content="关于：About - 王洪军个人博客 - 作者:王洪军"/> 
 	
-    <title>分类：Categories - 王洪军个人博客</title>
+    <title>关于：About - 王洪军个人博客</title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet"/>
     <!-- Custom CSS -->
@@ -87,28 +87,36 @@
       <div class="row">
         <!-- Blog Entries Column -->
         <div class="col-md-8">
-          <ul class="list-unstyled">
- 
-	 
-   <a name="code"></a>
-   <h2>code(6)</h2> 
-      
-    <li><h4><span>01 Jun 2017</span> &raquo; <a href="/posts/python-type.html">python中用type来创建一个类</a></h4></li>
-	 
-    <li><h4><span>05 May 2017</span> &raquo; <a href="/posts/nodejs.html">常用的各种linux系统安装nodejs</a></h4></li>
-	 
-    <li><h4><span>26 Apr 2017</span> &raquo; <a href="/posts/yanghui-sanjiao.html">杨辉三角</a></h4></li>
-	 
-    <li><h4><span>23 Apr 2017</span> &raquo; <a href="/posts/hannuota-suanfa.html">汉诺塔算法</a></h4></li>
-	 
-    <li><h4><span>22 Apr 2017</span> &raquo; <a href="/posts/unicode-utf8.html">acsii-unicode-utf8编码的来源以及关系</a></h4></li>
-	 
-    <li><h4><span>21 Apr 2017</span> &raquo; <a href="/posts/php-java-aes.html">php和java中对aes加密方式的不同</a></h4></li>
-	 
-    
- 
-</ul>
+          <p>一些使用的小程序(包括不限于php, shell, python, go, mysql)</p>
 
+<h4 id="1--php-统计php脚本是否在后台运行">1 — (php) 统计php脚本是否在后台运行</h4>
+<pre><code>function scriptIsRunning($key_word) {
+    $key_word || $key_word = __CLASS__;
+    $shell = "ps -ef | grep -v 'grep' |grep -v 'sudo' | grep '{$key_word}'";
+    $cmd_run = @popen($shell, 'r');
+    $total = 0;
+    while(!feof($cmd_run)) {
+        $content = trim(fgets($cmd_run, 1024));
+        if(empty($content)){
+            continue;
+        }
+        if (strpos($content, $key_word) !== false){
+            $total++;
+        }
+    }
+    @pclose($cmd_run);
+    return $total;
+}
+</code></pre>
+
+<p>$keyword表示运行的脚本关键词</p>
+
+
+<hr>
+<!-- Blog Comments -->
+<div class="media">
+  请修改_includes/comment.html添加评论代码。 
+</div>
         </div>
         <!-- Blog Sidebar Widgets Column -->
         <div class="col-md-4">
