@@ -1,31 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="483ff563-c314-4ccc-a05e-cdd75ecc9e58" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/404.html" afterPath="$PROJECT_DIR$/_site/404.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/about.html" afterPath="$PROJECT_DIR$/_site/about.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/archives.html" afterPath="$PROJECT_DIR$/_site/archives.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/atom.xml" afterPath="$PROJECT_DIR$/_site/atom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/categories.html" afterPath="$PROJECT_DIR$/_site/categories.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/faqs.html" afterPath="$PROJECT_DIR$/_site/faqs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/index.html" afterPath="$PROJECT_DIR$/_site/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/links.html" afterPath="$PROJECT_DIR$/_site/links.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/posts/android.html" afterPath="$PROJECT_DIR$/_site/posts/android.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/posts/code.html" afterPath="$PROJECT_DIR$/_site/posts/code.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/posts/hannuota-suanfa.html" afterPath="$PROJECT_DIR$/_site/posts/hannuota-suanfa.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/posts/life.html" afterPath="$PROJECT_DIR$/_site/posts/life.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/posts/nodejs.html" afterPath="$PROJECT_DIR$/_site/posts/nodejs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/posts/other.html" afterPath="$PROJECT_DIR$/_site/posts/other.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/posts/php-java-aes.html" afterPath="$PROJECT_DIR$/_site/posts/php-java-aes.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/posts/program.html" afterPath="$PROJECT_DIR$/_site/posts/program.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/posts/python-type.html" afterPath="$PROJECT_DIR$/_site/posts/python-type.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/posts/read.html" afterPath="$PROJECT_DIR$/_site/posts/read.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/posts/unicode-utf8.html" afterPath="$PROJECT_DIR$/_site/posts/unicode-utf8.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/posts/web.html" afterPath="$PROJECT_DIR$/_site/posts/web.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/posts/yanghui-sanjiao.html" afterPath="$PROJECT_DIR$/_site/posts/yanghui-sanjiao.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/smallcode.html" afterPath="$PROJECT_DIR$/_site/smallcode.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_site/tags.html" afterPath="$PROJECT_DIR$/_site/tags.html" />
-    </list>
+    <list default="true" id="483ff563-c314-4ccc-a05e-cdd75ecc9e58" name="Default" comment="" />
     <ignored path="wanghongjun2014.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -287,12 +263,12 @@
       <workItem from="1494383165763" duration="1196000" />
       <workItem from="1496318536757" duration="5241000" />
       <workItem from="1499190534050" duration="849000" />
-      <workItem from="1499840023619" duration="483000" />
+      <workItem from="1499840023619" duration="594000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28202000" />
+    <option name="totallyTimeSpent" value="28313000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
