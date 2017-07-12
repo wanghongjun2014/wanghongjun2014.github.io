@@ -4,9 +4,9 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="description" content="交换链接说明 - 王洪军个人博客 - 作者:王洪军"/> 
-	<meta name="keywords" content="链接,友情,交换"/>
-    <title>交换链接说明 - 王洪军个人博客</title>
+    <meta name="description" content="mysql正常运行偶尔会自动停止 - 王洪军个人博客 - 作者:王洪军"/> 
+	<meta name="keywords" content="mysql"/>
+    <title>mysql正常运行偶尔会自动停止 - 王洪军个人博客</title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet"/>
     <!-- Custom CSS -->
@@ -87,45 +87,51 @@
       <div class="row">
         <!-- Blog Entries Column -->
         <div class="col-md-8">
-          <h4 id="一说明">一.说明</h4>
-<p>本站只换首页链接，交换请做好本站链接后留言！<br />
-本站链接：</p>
+          <!-- Navi -->
+<a href="/">首页</a>&nbsp;>&nbsp;<a href="/posts/code.html">技术</a>&nbsp;>&nbsp;正文
+<!-- Title -->
+<h3>mysql正常运行偶尔会自动停止</h3>
+<b>标签：</b><a href="/tags.html#mysql"><i>mysql</i></a>
+<div class="post-date">
+	<span class="glyphicon glyphicon-time"></span>
+	2017-07-05
+</div>
+<br/>
 
-<blockquote>
-  <p>站名：潘学文博客<br />
-网址：http://www.panxw.com<br />
-说明：潘学文个人博客</p>
-</blockquote>
+<!-- content -->
+<div style="text-indent:2em;">
+<p>一个外包项目的mysql数据库服务今晚上突然自己停止了, 回来查看mysqld进程确实没了, 然后查看mysql的error_log， 发现错误如下</p>
 
-<p>留言格式参考本站链接，谢谢!</p>
+<p><img src="/assets/mysql-error.png" alt="result" title="结果" /></p>
 
-<h4 id="二链接收藏">二.链接收藏</h4>
-<li>
-<a href="https://news.ycombinator.com/">
-  Hacker News
-</a>
-</li>
-<li>
-<a href="http://www.stackoverflow.com/">
-  Stack Overflow
-</a>
-</li>
-<li>
-<a href="http://developer.android.com/">
-  Android Developer
-</a>
-</li>
-<li>
-<a href="http://blog.jobbole.com/">
-  Jobbole
-</a>
-</li>
-<li>
-<a href="http://99u.com/">
-  99U
-</a>
-</li>
+<p>这个是因为mysql升级软件包之后, 一些表的结构发生变化导致的, 可以运行如下命令解决:</p>
+<pre><code>mysql_upgrade -u root -p
+</code></pre>
 
+<p>结果如下:</p>
+
+<p><img src="/assets/mysql-error-ok.png" alt="result" title="结果" /></p>
+
+
+</div>
+
+<br/>
+<b>原创文章，转载请注明出处！</b>
+<br/>
+<b>本文链接：</b><a href="http://localhost:4000/posts/mysql-error-log.html" title="">http://localhost:4000/posts/mysql-error-log.html</a>
+
+<!-- next and previous -->
+<div style="margin-top:15px; margin-bottom:10px">
+  
+  <span class="next">
+    上篇：
+    <a href="/posts/python-type.html">
+      python中用type来创建一个类
+    </a>
+  </span>
+   
+  
+</div>
 <hr>
 <!-- Blog Comments -->
 <div class="media">

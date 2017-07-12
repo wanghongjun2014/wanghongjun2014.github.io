@@ -4,12 +4,32 @@
  <title></title>
  <link href="http://wanghongjun2014.github.io/atom.xml" rel="self"/>
  <link href="http://wanghongjun2014.github.io"/>
- <updated>2017-06-02T03:43:51-07:00</updated>
+ <updated>2017-07-11T23:21:47-07:00</updated>
  <author>
    <name>王洪军</name>
    <email>wanghongjun2014#163.com</email>
  </author>
 
+ 
+ <entry>
+   <title>mysql正常运行偶尔会自动停止</title>
+   <link href="http://wanghongjun2014.github.io/posts/mysql-error-log.html"/>
+   <updated>2017-07-05T00:00:00-07:00</updated>
+   <id>/posts/mysql-error-log</id>
+   <content type="html">&lt;p&gt;一个外包项目的mysql数据库服务今晚上突然自己停止了, 回来查看mysqld进程确实没了, 然后查看mysql的error_log， 发现错误如下&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/mysql-error.png&quot; alt=&quot;result&quot; title=&quot;结果&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这个是因为mysql升级软件包之后, 一些表的结构发生变化导致的, 可以运行如下命令解决:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;mysql_upgrade -u root -p
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;结果如下:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/mysql-error-ok.png&quot; alt=&quot;result&quot; title=&quot;结果&quot; /&gt;&lt;/p&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>python中用type来创建一个类</title>

@@ -89,6 +89,31 @@
           <!-- Loop output paged posts -->
 
 <div style="font-size:16px;">
+  <a href="/posts/mysql-error-log.html">
+    mysql正常运行偶尔会自动停止
+  </a> 
+  <div class="post-date">
+	2017-07-05
+  </div>
+</div>
+<hr>
+<p>一个外包项目的mysql数据库服务今晚上突然自己停止了, 回来查看mysqld进程确实没了, 然后查看mysql的error_log， 发现错误如下</p>
+
+<p><img src="/assets/mysql-error.png" alt="result" title="结果" /></p>
+
+<p>这个是因为mysql升级软件包之后, 一些表的结构发生变化导致的, 可以运行如下命令解决:</p>
+<pre><code>mysql_upgrade -u root -p
+</code></pre>
+
+<p>结果如下:</p>
+
+<p><img src="/assets/mysql-error-ok.png" alt="result" title="结果" /></p>
+
+
+	<p><h4><a href="/posts/mysql-error-log.html">阅读全文 &raquo;</a></h4></p>
+<hr>
+
+<div style="font-size:16px;">
   <a href="/posts/python-type.html">
     python中用type来创建一个类
   </a> 
@@ -446,6 +471,12 @@ move(int(count), 'A', 'B', 'C')
 			<div class="row">
                             <div class="col-lg-12">
                 <ul class="list-unstyled">
+				
+                  <li>
+                    <a href="/posts/mysql-error-log.html">
+                      mysql正常运行偶尔会自动停止
+                    </a>
+                  </li>
 				
                   <li>
                     <a href="/posts/python-type.html">
