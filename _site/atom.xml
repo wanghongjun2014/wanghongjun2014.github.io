@@ -4,12 +4,105 @@
  <title></title>
  <link href="http://wanghongjun2014.github.io/atom.xml" rel="self"/>
  <link href="http://wanghongjun2014.github.io"/>
- <updated>2017-07-24T02:03:46-07:00</updated>
+ <updated>2017-07-25T02:00:39-07:00</updated>
  <author>
    <name>王洪军</name>
    <email>wanghongjun2014#163.com</email>
  </author>
 
+ 
+ <entry>
+   <title>php观察者模式</title>
+   <link href="http://wanghongjun2014.github.io/posts/php-observe.html"/>
+   <updated>2017-07-24T00:00:00-07:00</updated>
+   <id>/posts/php-observe</id>
+   <content type="html">&lt;p&gt;最近公司项目开发过程中有场景用到了观察者模式, 记录一下
+一些面向对象的编程方式，提供了一种构建对象间复杂网络互连的能力。当对象们连接在一起时，
+它们就可以相互提供服务和信息。这个模式对于大型系统项目来说应该是挺挺有用的，通俗的讲，
+这种模式允许某个类去观察另一个类。当一个类被改变时，观察类就会收到通知并且做出相应的动作&lt;/p&gt;
+
+&lt;p&gt;在平时的项目中还是挺有用的，比如一个用户下了一笔订单，下单成功后，就需要去发送短信/邮件的通知，库存的修改，账户余额的修改等等很多操作。&lt;/p&gt;
+
+&lt;p&gt;在之后的PHP5.0起，内置的SPL标准库中就提供了这种设计模式接口供大家使用，接下了就通过实例来学习一下。&lt;/p&gt;
+
+&lt;p&gt;SPL 提供了 SplSubject 和 SplObserver 接口。
+SplSubject 接口提供了attach()、detach()、notify() 三个方法。而 SplObserver 接口则提供了 update()方法。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+/**
+ * 这一模式的概念是SplSubject类维护了一个特定状态，当这个状态发生变化时，它就会调用notify()方法。
+ * 调用notify()方法时，所有之前使用attach()方法注册的SplObserver实例的update方法都会被调用。
+ *
+ */
+interface SplSubject{
+    public function attach(SplObserver $observer);//注册观察者
+    public function detach(SplObserver $observer);//释放观察者
+    public function notify();//通知所有注册的观察者
+}
+interface SplObserver{
+    public function update(SplSubject $subject);//观察者进行更新状态
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;使用所提供的接口，来实现观察者模式&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+/**
+ *具体目标
+ */
+class Salary implements SplSubject {
+    private $observers, $money;
+    public function __construct() {
+        $this-&amp;gt;observers = array();
+    }
+
+    public function attach(SplObserver $observer) { //注册观察者
+        $this-&amp;gt;observers[] = $observer;
+    }
+
+    public function detach(SplObserver $observer) { //释放观察者
+        if($idx = array_search($observer,$this-&amp;gt;observers,true)) {
+            unset($this-&amp;gt;observers[$idx]);
+        }
+    }
+
+    public function notify() { //通知所有观察者
+        foreach($this-&amp;gt;observers as $observer) {
+            $observer-&amp;gt;update($this);
+        }
+    }
+
+    public function payoff($money) { //发工资方法
+        $this-&amp;gt;money = $money;
+        $this-&amp;gt;notify(); //通知观察者
+    }
+}
+/**
+ * 具体观察者
+ */
+class Programmer1 implements SplObserver {
+    public function update(SplSubject $subject) {
+        echo 'Programmer1 发工资了！&amp;lt;br/&amp;gt;';
+    }
+}
+
+class Programmer2 implements SplObserver {
+    public function update(SplSubject $subject) {
+        echo 'Programmer2 也发工资了！&amp;lt;br/&amp;gt;';
+    }
+}
+
+$subject = new Salary();
+$observer1 = new Programmer1();
+$observer2 = new Programmer2();
+//注册观察者
+$subject-&amp;gt;attach($observer1);
+$subject-&amp;gt;attach($observer2);
+//发工资操作，发起通知
+$subject-&amp;gt;payoff('20K');
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;通过Observer模式，把一对多对象之间的通知依赖关系的变得更为松散，大大地提高了程序的可维护性和可扩展性，也很好的符合了开放-封闭原则。东西是不错，如何能够更好的去使用它，仍需要多加实践、联系&lt;/p&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>php7中$GLOBALS['HTTP_RAW_POST_DATA']获取不到值</title>

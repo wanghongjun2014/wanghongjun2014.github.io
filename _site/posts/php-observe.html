@@ -4,9 +4,9 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="description" content="php7中$GLOBALS['HTTP_RAW_POST_DATA']获取不到值 - 王洪军个人博客 - 作者:王洪军"/> 
+    <meta name="description" content="php观察者模式 - 王洪军个人博客 - 作者:王洪军"/> 
 	<meta name="keywords" content="php"/>
-    <title>php7中$GLOBALS['HTTP_RAW_POST_DATA']获取不到值 - 王洪军个人博客</title>
+    <title>php观察者模式 - 王洪军个人博客</title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet"/>
     <!-- Custom CSS -->
@@ -90,7 +90,7 @@
           <!-- Navi -->
 <a href="/">首页</a>&nbsp;>&nbsp;<a href="/posts/code.html">技术</a>&nbsp;>&nbsp;正文
 <!-- Title -->
-<h3>php7中$GLOBALS['HTTP_RAW_POST_DATA']获取不到值</h3>
+<h3>php观察者模式</h3>
 <b>标签：</b><a href="/tags.html#php"><i>php</i></a>
 <div class="post-date">
 	<span class="glyphicon glyphicon-time"></span>
@@ -100,8 +100,90 @@
 
 <!-- content -->
 <div style="text-indent:2em;">
-<p>今天微信开发的时候碰到了一个问题, 接收不到微信推送过来的消息, 后来查明是因为php7中$GLOBALS[‘HTTP_RAW_POST_DATA’]被废弃了,
-可以使用 file_get_contents( ‘php://input’ ) 来获取, 可以在代码中判断是否可以用 $GLOBALS[‘HTTP_RAW_POST_DATA’] 来获取值</p>
+<p>最近公司项目开发过程中有场景用到了观察者模式, 记录一下
+一些面向对象的编程方式，提供了一种构建对象间复杂网络互连的能力。当对象们连接在一起时，
+它们就可以相互提供服务和信息。这个模式对于大型系统项目来说应该是挺挺有用的，通俗的讲，
+这种模式允许某个类去观察另一个类。当一个类被改变时，观察类就会收到通知并且做出相应的动作</p>
+
+<p>在平时的项目中还是挺有用的，比如一个用户下了一笔订单，下单成功后，就需要去发送短信/邮件的通知，库存的修改，账户余额的修改等等很多操作。</p>
+
+<p>在之后的PHP5.0起，内置的SPL标准库中就提供了这种设计模式接口供大家使用，接下了就通过实例来学习一下。</p>
+
+<p>SPL 提供了 SplSubject 和 SplObserver 接口。
+SplSubject 接口提供了attach()、detach()、notify() 三个方法。而 SplObserver 接口则提供了 update()方法。</p>
+<pre><code>&lt;?php
+/**
+ * 这一模式的概念是SplSubject类维护了一个特定状态，当这个状态发生变化时，它就会调用notify()方法。
+ * 调用notify()方法时，所有之前使用attach()方法注册的SplObserver实例的update方法都会被调用。
+ *
+ */
+interface SplSubject{
+    public function attach(SplObserver $observer);//注册观察者
+    public function detach(SplObserver $observer);//释放观察者
+    public function notify();//通知所有注册的观察者
+}
+interface SplObserver{
+    public function update(SplSubject $subject);//观察者进行更新状态
+}
+</code></pre>
+<p>使用所提供的接口，来实现观察者模式</p>
+<pre><code>&lt;?php
+/**
+ *具体目标
+ */
+class Salary implements SplSubject {
+    private $observers, $money;
+    public function __construct() {
+        $this-&gt;observers = array();
+    }
+
+    public function attach(SplObserver $observer) { //注册观察者
+        $this-&gt;observers[] = $observer;
+    }
+
+    public function detach(SplObserver $observer) { //释放观察者
+        if($idx = array_search($observer,$this-&gt;observers,true)) {
+            unset($this-&gt;observers[$idx]);
+        }
+    }
+
+    public function notify() { //通知所有观察者
+        foreach($this-&gt;observers as $observer) {
+            $observer-&gt;update($this);
+        }
+    }
+
+    public function payoff($money) { //发工资方法
+        $this-&gt;money = $money;
+        $this-&gt;notify(); //通知观察者
+    }
+}
+/**
+ * 具体观察者
+ */
+class Programmer1 implements SplObserver {
+    public function update(SplSubject $subject) {
+        echo 'Programmer1 发工资了！&lt;br/&gt;';
+    }
+}
+
+class Programmer2 implements SplObserver {
+    public function update(SplSubject $subject) {
+        echo 'Programmer2 也发工资了！&lt;br/&gt;';
+    }
+}
+
+$subject = new Salary();
+$observer1 = new Programmer1();
+$observer2 = new Programmer2();
+//注册观察者
+$subject-&gt;attach($observer1);
+$subject-&gt;attach($observer2);
+//发工资操作，发起通知
+$subject-&gt;payoff('20K');
+
+</code></pre>
+<p>通过Observer模式，把一对多对象之间的通知依赖关系的变得更为松散，大大地提高了程序的可维护性和可扩展性，也很好的符合了开放-封闭原则。东西是不错，如何能够更好的去使用它，仍需要多加实践、联系</p>
 
 
 </div>
@@ -109,27 +191,18 @@
 <br/>
 <b>原创文章，转载请注明出处！</b>
 <br/>
-<b>本文链接：</b><a href="http://localhost:4000/posts/HTTP_RAW_POST_DATA.html" title="">http://localhost:4000/posts/HTTP_RAW_POST_DATA.html</a>
+<b>本文链接：</b><a href="http://localhost:4000/posts/php-observe.html" title="">http://localhost:4000/posts/php-observe.html</a>
 
 <!-- next and previous -->
 <div style="margin-top:15px; margin-bottom:10px">
   
   <span class="next">
     上篇：
-    <a href="/posts/create-image.html">
-      图片上生成文字, 或者图片上生成图片
+    <a href="/posts/HTTP_RAW_POST_DATA.html">
+      php7中$GLOBALS['HTTP_RAW_POST_DATA']获取不到值
     </a>
   </span>
    
-  
-  <div style="float:right">
-  <span class="prev" >
-    下篇：
-    <a href="/posts/php-observe.html">
-      php观察者模式
-    </a>
-  </span>
-  </div>
   
 </div>
 <hr>

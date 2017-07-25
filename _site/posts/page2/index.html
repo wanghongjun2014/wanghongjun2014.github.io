@@ -89,6 +89,79 @@
           <!-- Loop output paged posts -->
 
 <div style="font-size:16px;">
+  <a href="/posts/unicode-utf8.html">
+    acsii-unicode-utf8编码的来源以及关系
+  </a> 
+  <div class="post-date">
+	2017-04-22
+  </div>
+</div>
+<hr>
+<p>周末的时候细下心来查询整理下了一下字符串编码的来源以及各种格式之间的关系,以下纯属自己的理解思路,如有误,欢迎指出:</p>
+
+<hr />
+
+<ol>
+  <li>关于ascii码
+    <pre><code>最早的时候计算机是由老外发明的, 他们只把127个字符编码到计算机中, 其中包括大小写字母和一些特殊符号, 这个
+编码表被称为ASCII编码,比如大写字母A的编码是65,小写字母z的编码是122, 所以针对ascii编码而言, 1个字节(8
+个byte)足以了, 因为1个字节最大二进制表示为 11111111, 十进制位256
+</code></pre>
+  </li>
+  <li>关于中文编码
+    <pre><code>第一条说的英文, 对于中文而言, 1个字节明显不够, 刚刚百度查了下, 中国的汉字大约有10W多个, 至少2个字节吧,
+2个字节最大为 1111111111111111十进制数位 65535 ,所以中国就出现了GBK系列的编码, 但是如果每个国家都制定自己的一套编码那岂不是乱套了吗, 所以为了统一unicode编码就出现了
+</code></pre>
+  </li>
+  <li>unicode编码
+    <pre><code>unicode把所有的编码都统一到一套编码里, 它的标准也在不停的扩展, 最常用的是用两个字节表示一个字符(这个地
+方的字符是不区分英文还是中文的), 所以到目前为止, ascii码和unicode编码的区别就是前者采用一个字节编码(其实连一个字节都用不上,总共127个字符, 7个byte正好就够了), 后者用两个字节但是如果你写的文本全是英文的话,
+采取unicode编码是不是就有点浪费空间了呢, 对于存储和传输都是十分不利的, 比如字母A在ascii编码中存储的二
+进制为01000001, 但是在unicode编码中为 00000000 01000001, 为了解决这种情况, 就出现了一种变长的unicode编码, 被称为 utf-8 编码
+</code></pre>
+  </li>
+  <li>utf-8编码
+    <pre><code>utf-8规定, 把一个unicode字符编码成1-6个字节, 常用的英文被编码成1个字节(unicode是2个字节), 中文一般
+用3个字节(unicode也是2个字节), 只有那些很生僻的汉字才会用到4-6个字节
+</code></pre>
+  </li>
+</ol>
+
+<hr />
+
+<table>
+  <tbody>
+    <tr>
+      <td>字符</td>
+      <td>ASCII码</td>
+      <td>unicode编码</td>
+      <td>utf-8编码</td>
+    </tr>
+    <tr>
+      <td>A</td>
+      <td>–01000001–</td>
+      <td>–00000000 01000001–</td>
+      <td>–01000001–</td>
+    </tr>
+    <tr>
+      <td>中</td>
+      <td>–x–</td>
+      <td>–01001110 00101101–</td>
+      <td>–11100100 10111000 10101101–</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<pre><code>另外, 在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。用记事本编辑的时候，从文件读取的UTF-8字符被转换为Unicode字符到内存里，编辑完成后，保存的时候再把Unicode转换为UTF-8保存到文件
+</code></pre>
+
+
+	<p><h4><a href="/posts/unicode-utf8.html">阅读全文 &raquo;</a></h4></p>
+<hr>
+
+<div style="font-size:16px;">
   <a href="/posts/php-java-aes.html">
     php和java中对aes加密方式的不同
   </a> 
@@ -209,6 +282,12 @@
 			<div class="row">
                             <div class="col-lg-12">
                 <ul class="list-unstyled">
+				
+                  <li>
+                    <a href="/posts/php-observe.html">
+                      php观察者模式
+                    </a>
+                  </li>
 				
                   <li>
                     <a href="/posts/HTTP_RAW_POST_DATA.html">
