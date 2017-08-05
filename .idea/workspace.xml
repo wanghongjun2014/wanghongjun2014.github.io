@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="483ff563-c314-4ccc-a05e-cdd75ecc9e58" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_posts/2017-08-05-python-mysql_connector.markdown" afterPath="$PROJECT_DIR$/_posts/2017-08-05-python-mysql_connector.markdown" />
     </list>
     <ignored path="wanghongjun2014.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,8 +36,8 @@
       <file leaf-file-name="2017-08-05-python-mysql_connector.markdown" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/_posts/2017-08-05-python-mysql_connector.markdown">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+            <state relative-caret-position="176">
+              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -271,12 +272,12 @@
       <workItem from="1499842843336" duration="98000" />
       <workItem from="1500884511463" duration="2241000" />
       <workItem from="1500973025035" duration="1465000" />
-      <workItem from="1501911829265" duration="339000" />
+      <workItem from="1501911829265" duration="488000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32456000" />
+    <option name="totallyTimeSpent" value="32605000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -737,8 +738,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/_posts/2017-08-05-python-mysql_connector.markdown">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        <state relative-caret-position="176">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
