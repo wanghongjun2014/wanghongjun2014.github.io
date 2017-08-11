@@ -1,0 +1,13 @@
+---
+layout: post
+category: "code"
+title:  "php快速查看扩展的信息"
+tags: [php]
+---
+
+比如我想快速查看php某个扩展的版本号, 可以用如下命令来快速查看
+
+```
+php --ri swoole
+```
+php --ri 命令就是专门用来查看php扩展信息的, 后面直接加上扩展的name就好
