@@ -35,6 +35,7 @@ $server->on('Request', 'my_onRequest');
 ```
 
 ### 对象方法
+```
 class A
 {
     function test($req, $resp)
@@ -45,3 +46,4 @@ class A
 
 $object = new A();
 $server->on('Request', array($object, 'test'));
+```
