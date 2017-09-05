@@ -89,6 +89,136 @@
           <!-- Loop output paged posts -->
 
 <div style="font-size:16px;">
+  <a href="/posts/php-four-callback.html">
+    php的4种回调函数风格
+  </a> 
+  <div class="post-date">
+	2017-08-13
+  </div>
+</div>
+<hr>
+<h3 id="匿名函数">匿名函数</h3>
+
+<pre><code>$server-&gt;on('Request', function ($req, $resp) {
+    echo "hello world";
+});
+</code></pre>
+
+<h3 id="类静态方法">类静态方法</h3>
+<pre><code>class A
+{
+    static function test($req, $resp)
+    {
+        echo "hello world";
+    }
+}
+$server-&gt;on('Request', 'A::Test');
+$server-&gt;on('Request', array('A', 'Test'));
+</code></pre>
+<h3 id="函数">函数</h3>
+<pre><code>function my_onRequest($req, $resp)
+{
+    echo "hello world";
+}
+$server-&gt;on('Request', 'my_onRequest');
+</code></pre>
+
+<h3 id="对象方法">对象方法</h3>
+<pre><code>class A
+{
+    function test($req, $resp)
+    {
+        echo "hello world";
+    }
+}
+
+$object = new A();
+$server-&gt;on('Request', array($object, 'test'));
+</code></pre>
+
+	<p><h4><a href="/posts/php-four-callback.html">阅读全文 &raquo;</a></h4></p>
+<hr>
+
+<div style="font-size:16px;">
+  <a href="/posts/php-ri.html">
+    php快速查看扩展的信息
+  </a> 
+  <div class="post-date">
+	2017-08-11
+  </div>
+</div>
+<hr>
+<p>比如我想快速查看php某个扩展的版本号, 可以用如下命令来快速查看</p>
+
+<pre><code>php --ri swoole
+</code></pre>
+<p>php –ri 命令就是专门用来查看php扩展信息的, 后面直接加上扩展的name就好</p>
+
+	<p><h4><a href="/posts/php-ri.html">阅读全文 &raquo;</a></h4></p>
+<hr>
+
+<div style="font-size:16px;">
+  <a href="/posts/mac_brew_php_error.html">
+    dyld: Library not loaded
+  </a> 
+  <div class="post-date">
+	2017-08-10
+  </div>
+</div>
+<hr>
+<p>今天莫名其妙的出现了如下错误</p>
+<pre><code>php -v
+dyld: Library not loaded: /usr/local/opt/jpeg/lib/libjpeg.8.dylib
+  Referenced from: /usr/local/bin/php
+  Reason: image not found
+[1]    24433 abort      php -v
+</code></pre>
+
+<p>解决办法是重新安装下libjpeg.8.dylib这个包</p>
+<pre><code>wget -c http://www.ijg.org/files/jpegsrc.v8d.tar.gz
+tar xzf jpegsrc.v8d.tar.gz
+cd jpeg-8d
+./configure
+make
+cp ./.libs/libjpeg.8.dylib /usr/local/opt/jpeg/lib
+</code></pre>
+<p>ps: 如果编译之后找不到libjpeg.8.dylib这个文件, 可以用如下命令查找文件位置</p>
+<pre><code>find / -name libjpeg.8.dylib
+</code></pre>
+
+	<p><h4><a href="/posts/mac_brew_php_error.html">阅读全文 &raquo;</a></h4></p>
+<hr>
+
+<div style="font-size:16px;">
+  <a href="/posts/python-mysql_connector.html">
+    python安装mysql驱动
+  </a> 
+  <div class="post-date">
+	2017-08-05
+  </div>
+</div>
+<hr>
+<p>安装python的mysql驱动的时候， 可以通过下面两种方式来安装
+1</p>
+<pre><code>pip install mysql-connector-python --allow-external mysql-connector-python (pip install mysql-connector)
+</code></pre>
+
+<p>2 从mysql官网下载下来安装</p>
+<pre><code>https://dev.mysql.com/downloads/connector/c/
+</code></pre>
+<p>但是不管哪种方式安装都碰到了一个error, 安装不成功, 错误信息类似于</p>
+<pre><code>Unable to find Protobuf include directory.
+</code></pre>
+<p>最开始怀疑是这个驱动包不支持python3, 后来用pyhton2试了一下还是不行(ps: 安装python3的驱动的时候将pip命令替换为pip3即可),
+后来发现是版本的问题, 具体支持到哪个版本请自行查阅, 安装的时候带上版本号就可以了</p>
+<pre><code> pip3 install mysql-connector==2.1.4
+</code></pre>
+<p>目前版本是2.1.4, 再高的版本没有试过</p>
+
+	<p><h4><a href="/posts/python-mysql_connector.html">阅读全文 &raquo;</a></h4></p>
+<hr>
+
+<div style="font-size:16px;">
   <a href="/posts/php-observe.html">
     php观察者模式
   </a> 
@@ -378,176 +508,6 @@ function padding($text, $size)
 	<p><h4><a href="/posts/mysql-error-log.html">阅读全文 &raquo;</a></h4></p>
 <hr>
 
-<div style="font-size:16px;">
-  <a href="/posts/python-type.html">
-    python中用type来创建一个类
-  </a> 
-  <div class="post-date">
-	2017-06-01
-  </div>
-</div>
-<hr>
-<p>起因是和同事讨论Python中的枚举类型的作用与php中有什么不同,后来发现python2.7中本身不带枚举类的,需要自己写代码实现,
-3中已经自带枚举类的包了, 用type函数实现,一般我们用type来判断对象的类型(我更倾向用isinstance来判断), 但是type比较
-少用的作用是用来创建一个类</p>
-
-<h3 id="代码如下">代码如下</h3>
-<pre><code>def __init__(self, name):
-    self.name = name
-
-
-def print_name(self):
-    print(self.name)
-
-
-bases = (object,)
-
-attrs = {
-    '__init__' : __init__,
-    'print_name' : print_name
-}
-
-Duck = type('Duck', bases, attrs)
-
-d = Duck('cola')
-d.print_name()
-
-</code></pre>
-<p>其中type函数包括三个参数, 第一个是类的名字, 第二个可以理解成继承的类,但要是元组格式, 第三个参数是个dict类型, 里面可以包含类的成员变量
-,也可以包含类的成员函数—-其实当你用class定义一个类的时候, python解释器在遇到class的时候只会浏览检测一下class的语法之类的东西, 然后接着会用
-内置的type函数来创建类.</p>
-
-
-	<p><h4><a href="/posts/python-type.html">阅读全文 &raquo;</a></h4></p>
-<hr>
-
-<div style="font-size:16px;">
-  <a href="/posts/nodejs.html">
-    常用的各种linux系统安装nodejs
-  </a> 
-  <div class="post-date">
-	2017-05-05
-  </div>
-</div>
-<hr>
-<p>有的时候node源码下载编译安装的时候会有各种依赖包的版本问题, 所以采用命令方式安装比较简单, 如下:</p>
-
-<h3 id="debian78-和-ubuntu121416">Debian7/8 和 Ubuntu12/14/16</h3>
-<p>nodejs&gt;=6.x</p>
-<pre><code>curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-sudo apt-get install -y nodejs
-</code></pre>
-
-<p>nodejsv7:</p>
-<pre><code>curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
-sudo apt-get install -y nodejs
-</code></pre>
-
-<h3 id="centos-or-fedora">Centos Or Fedora</h3>
-<p>nodejs &gt;= 6.x</p>
-<pre><code>curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -
-yum -y install nodejs
-</code></pre>
-
-<p>nodejs v7</p>
-<pre><code>curl --silent --location https://rpm.nodesource.com/setup_7.x | bash -
-yum -y install nodejs
-</code></pre>
-<p>当然还有些0.10低版本之类的node就不考虑的, out了</p>
-
-
-	<p><h4><a href="/posts/nodejs.html">阅读全文 &raquo;</a></h4></p>
-<hr>
-
-<div style="font-size:16px;">
-  <a href="/posts/yanghui-sanjiao.html">
-    杨辉三角
-  </a> 
-  <div class="post-date">
-	2017-04-26
-  </div>
-</div>
-<hr>
-<p>算法代码为</p>
-<pre><code>#!/usr/local/bin/python3
-# _*_ coding: utf-8 _*_
-
-def triangle(max):
-    q = [1]
-    n = 0
-    while n &lt; max:
-        print(q)
-        for i in range(1, len(q)):
-            q[i] = p[i-1] + p[i]
-
-        q.append(1)
-        n = n + 1
-        p = q[:]
-
-
-
-triangle(6)
-
-</code></pre>
-<p>效果为:</p>
-
-<p><img src="/assets/yanghui-sanjiao.png" alt="result" title="结果" /></p>
-
-	<p><h4><a href="/posts/yanghui-sanjiao.html">阅读全文 &raquo;</a></h4></p>
-<hr>
-
-<div style="font-size:16px;">
-  <a href="/posts/hannuota-suanfa.html">
-    汉诺塔算法
-  </a> 
-  <div class="post-date">
-	2017-04-23
-  </div>
-</div>
-<hr>
-<p>下午研究下汉诺塔算法, 挺有意思的, 大体示意图如下:
-<img src="/assets/hannuota.png" alt="hannuota" title="汉诺塔" /></p>
-
-<p>说明:A.B.C分别表示三根柱子, 1，2，3分别表示三个圆盘, 并且数字越大表示圆盘越大, 现在我们需要将A上的全部圆盘移动到C上</p>
-<ol>
-  <li>只有一个圆盘1的情况, 直接从<strong>A-&gt;C</strong></li>
-  <li>有2个圆盘1 2, 则 A-&gt;B  <strong>A-&gt;C</strong> B-&gt;C</li>
-  <li>有3个圆盘1 2 3的情况下, 总共需要7步。 A-&gt;C A-&gt;B C-&gt;B <strong>A-&gt;C</strong> B-&gt;A B-&gt;C A-&gt;C</li>
-</ol>
-
-<p>分析过程, 不管有几个盘子, 最重要的就是<strong>A-&gt;C</strong>(步骤中加粗)这一步, 也就是把数字最大的盘子移动到C柱子上, 以3个盘子为例, 在A-&gt;C步骤的上面表示把1号和2号盘子
-从起点A移动到终点B, 下面表示把1号盘子和2号盘子从起点B移动到终点C, 所以可以用一种递归的思想表示这个过程</p>
-<pre><code>假如函数原型是move(n, A, B, C)
-#上面的部分: n-1个圆盘从A-&gt;B
-move(n-1, A, C, B)
-#中间部分, 号码最大的盘子从A-&gt;C
-move(1, A, B, C)
-#下面部分: n-1个圆盘从B-&gt;C
-move(n-1, B, A, C)
-</code></pre>
-
-<p>算法代码为</p>
-<pre><code>#!/usr/local/bin/python3
-# _*_ coding: utf-8 _*_
-
-def move(n, a, b, c):
-    if n == 1:
-        print(a, '-&gt;', c)
-    else:
-        move(n-1, a, c, b)
-        move(1, a, b, c)
-        move(n-1, b, a, c)
-
-count = input("请输入要移动到圆盘个数: ")
-move(int(count), 'A', 'B', 'C')
-</code></pre>
-<p>效果为:</p>
-
-<p><img src="/assets/hannuota-result.png" alt="result" title="结果" /></p>
-
-	<p><h4><a href="/posts/hannuota-suanfa.html">阅读全文 &raquo;</a></h4></p>
-<hr>
-
 
 <!-- Pager indicator -->
 <ul class="pager">
@@ -632,6 +592,30 @@ move(int(count), 'A', 'B', 'C')
                 <ul class="list-unstyled">
 				
                   <li>
+                    <a href="/posts/php-four-callback.html">
+                      php的4种回调函数风格
+                    </a>
+                  </li>
+				
+                  <li>
+                    <a href="/posts/php-ri.html">
+                      php快速查看扩展的信息
+                    </a>
+                  </li>
+				
+                  <li>
+                    <a href="/posts/mac_brew_php_error.html">
+                      dyld: Library not loaded
+                    </a>
+                  </li>
+				
+                  <li>
+                    <a href="/posts/python-mysql_connector.html">
+                      python安装mysql驱动
+                    </a>
+                  </li>
+				
+                  <li>
                     <a href="/posts/php-observe.html">
                       php观察者模式
                     </a>
@@ -664,30 +648,6 @@ move(int(count), 'A', 'B', 'C')
                   <li>
                     <a href="/posts/nodejs.html">
                       常用的各种linux系统安装nodejs
-                    </a>
-                  </li>
-				
-                  <li>
-                    <a href="/posts/yanghui-sanjiao.html">
-                      杨辉三角
-                    </a>
-                  </li>
-				
-                  <li>
-                    <a href="/posts/hannuota-suanfa.html">
-                      汉诺塔算法
-                    </a>
-                  </li>
-				
-                  <li>
-                    <a href="/posts/unicode-utf8.html">
-                      acsii-unicode-utf8编码的来源以及关系
-                    </a>
-                  </li>
-				
-                  <li>
-                    <a href="/posts/php-java-aes.html">
-                      php和java中对aes加密方式的不同
                     </a>
                   </li>
 				  

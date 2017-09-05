@@ -4,12 +4,122 @@
  <title></title>
  <link href="http://wanghongjun2014.github.io/atom.xml" rel="self"/>
  <link href="http://wanghongjun2014.github.io"/>
- <updated>2017-07-25T02:00:39-07:00</updated>
+ <updated>2017-09-04T20:17:05-07:00</updated>
  <author>
    <name>王洪军</name>
    <email>wanghongjun2014#163.com</email>
  </author>
 
+ 
+ <entry>
+   <title>php的4种回调函数风格</title>
+   <link href="http://wanghongjun2014.github.io/posts/php-four-callback.html"/>
+   <updated>2017-08-13T00:00:00-07:00</updated>
+   <id>/posts/php-four-callback</id>
+   <content type="html">&lt;h3 id=&quot;匿名函数&quot;&gt;匿名函数&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$server-&amp;gt;on('Request', function ($req, $resp) {
+    echo &quot;hello world&quot;;
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;类静态方法&quot;&gt;类静态方法&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;class A
+{
+    static function test($req, $resp)
+    {
+        echo &quot;hello world&quot;;
+    }
+}
+$server-&amp;gt;on('Request', 'A::Test');
+$server-&amp;gt;on('Request', array('A', 'Test'));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;函数&quot;&gt;函数&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;function my_onRequest($req, $resp)
+{
+    echo &quot;hello world&quot;;
+}
+$server-&amp;gt;on('Request', 'my_onRequest');
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;对象方法&quot;&gt;对象方法&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;class A
+{
+    function test($req, $resp)
+    {
+        echo &quot;hello world&quot;;
+    }
+}
+
+$object = new A();
+$server-&amp;gt;on('Request', array($object, 'test'));
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>php快速查看扩展的信息</title>
+   <link href="http://wanghongjun2014.github.io/posts/php-ri.html"/>
+   <updated>2017-08-11T00:00:00-07:00</updated>
+   <id>/posts/php-ri</id>
+   <content type="html">&lt;p&gt;比如我想快速查看php某个扩展的版本号, 可以用如下命令来快速查看&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;php --ri swoole
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;php –ri 命令就是专门用来查看php扩展信息的, 后面直接加上扩展的name就好&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>dyld: Library not loaded</title>
+   <link href="http://wanghongjun2014.github.io/posts/mac_brew_php_error.html"/>
+   <updated>2017-08-10T00:00:00-07:00</updated>
+   <id>/posts/mac_brew_php_error</id>
+   <content type="html">&lt;p&gt;今天莫名其妙的出现了如下错误&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;php -v
+dyld: Library not loaded: /usr/local/opt/jpeg/lib/libjpeg.8.dylib
+  Referenced from: /usr/local/bin/php
+  Reason: image not found
+[1]    24433 abort      php -v
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;解决办法是重新安装下libjpeg.8.dylib这个包&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;wget -c http://www.ijg.org/files/jpegsrc.v8d.tar.gz
+tar xzf jpegsrc.v8d.tar.gz
+cd jpeg-8d
+./configure
+make
+cp ./.libs/libjpeg.8.dylib /usr/local/opt/jpeg/lib
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;ps: 如果编译之后找不到libjpeg.8.dylib这个文件, 可以用如下命令查找文件位置&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;find / -name libjpeg.8.dylib
+&lt;/code&gt;&lt;/pre&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>python安装mysql驱动</title>
+   <link href="http://wanghongjun2014.github.io/posts/python-mysql_connector.html"/>
+   <updated>2017-08-05T00:00:00-07:00</updated>
+   <id>/posts/python-mysql_connector</id>
+   <content type="html">&lt;p&gt;安装python的mysql驱动的时候， 可以通过下面两种方式来安装
+1&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pip install mysql-connector-python --allow-external mysql-connector-python (pip install mysql-connector)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;2 从mysql官网下载下来安装&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;https://dev.mysql.com/downloads/connector/c/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;但是不管哪种方式安装都碰到了一个error, 安装不成功, 错误信息类似于&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Unable to find Protobuf include directory.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;最开始怀疑是这个驱动包不支持python3, 后来用pyhton2试了一下还是不行(ps: 安装python3的驱动的时候将pip命令替换为pip3即可),
+后来发现是版本的问题, 具体支持到哪个版本请自行查阅, 安装的时候带上版本号就可以了&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; pip3 install mysql-connector==2.1.4
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;目前版本是2.1.4, 再高的版本没有试过&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>php观察者模式</title>

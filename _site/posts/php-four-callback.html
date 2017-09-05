@@ -4,9 +4,9 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="description" content="php7中$GLOBALS['HTTP_RAW_POST_DATA']获取不到值 - 王洪军个人博客 - 作者:王洪军"/> 
+    <meta name="description" content="php的4种回调函数风格 - 王洪军个人博客 - 作者:王洪军"/> 
 	<meta name="keywords" content="php"/>
-    <title>php7中$GLOBALS['HTTP_RAW_POST_DATA']获取不到值 - 王洪军个人博客</title>
+    <title>php的4种回调函数风格 - 王洪军个人博客</title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet"/>
     <!-- Custom CSS -->
@@ -90,46 +90,72 @@
           <!-- Navi -->
 <a href="/">首页</a>&nbsp;>&nbsp;<a href="/posts/code.html">技术</a>&nbsp;>&nbsp;正文
 <!-- Title -->
-<h3>php7中$GLOBALS['HTTP_RAW_POST_DATA']获取不到值</h3>
+<h3>php的4种回调函数风格</h3>
 <b>标签：</b><a href="/tags.html#php"><i>php</i></a>
 <div class="post-date">
 	<span class="glyphicon glyphicon-time"></span>
-	2017-07-24
+	2017-08-13
 </div>
 <br/>
 
 <!-- content -->
 <div style="text-indent:2em;">
-<p>今天微信开发的时候碰到了一个问题, 接收不到微信推送过来的消息, 后来查明是因为php7中$GLOBALS[‘HTTP_RAW_POST_DATA’]被废弃了,
-可以使用 file_get_contents( ‘php://input’ ) 来获取, 可以在代码中判断是否可以用 $GLOBALS[‘HTTP_RAW_POST_DATA’] 来获取值</p>
+<h3 id="匿名函数">匿名函数</h3>
 
+<pre><code>$server-&gt;on('Request', function ($req, $resp) {
+    echo "hello world";
+});
+</code></pre>
+
+<h3 id="类静态方法">类静态方法</h3>
+<pre><code>class A
+{
+    static function test($req, $resp)
+    {
+        echo "hello world";
+    }
+}
+$server-&gt;on('Request', 'A::Test');
+$server-&gt;on('Request', array('A', 'Test'));
+</code></pre>
+<h3 id="函数">函数</h3>
+<pre><code>function my_onRequest($req, $resp)
+{
+    echo "hello world";
+}
+$server-&gt;on('Request', 'my_onRequest');
+</code></pre>
+
+<h3 id="对象方法">对象方法</h3>
+<pre><code>class A
+{
+    function test($req, $resp)
+    {
+        echo "hello world";
+    }
+}
+
+$object = new A();
+$server-&gt;on('Request', array($object, 'test'));
+</code></pre>
 
 </div>
 
 <br/>
 <b>原创文章，转载请注明出处！</b>
 <br/>
-<b>本文链接：</b><a href="http://localhost:4000/posts/HTTP_RAW_POST_DATA.html" title="">http://localhost:4000/posts/HTTP_RAW_POST_DATA.html</a>
+<b>本文链接：</b><a href="http://localhost:4000/posts/php-four-callback.html" title="">http://localhost:4000/posts/php-four-callback.html</a>
 
 <!-- next and previous -->
 <div style="margin-top:15px; margin-bottom:10px">
   
   <span class="next">
     上篇：
-    <a href="/posts/create-image.html">
-      图片上生成文字, 或者图片上生成图片
+    <a href="/posts/php-ri.html">
+      php快速查看扩展的信息
     </a>
   </span>
    
-  
-  <div style="float:right">
-  <span class="prev" >
-    下篇：
-    <a href="/posts/php-observe.html">
-      php观察者模式
-    </a>
-  </span>
-  </div>
   
 </div>
 <hr>

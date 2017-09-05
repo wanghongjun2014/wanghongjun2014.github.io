@@ -1,0 +1,53 @@
+---
+layout: post
+category: "code"
+title:  "centos6.5安装mysql5.6/5.7"
+tags: [php]
+---
+
+由于公司业务需要, 需要在一台线上机器装mysql5.6/5.7, 之前是装了mysql5.1(但是没有人用), 因为是线上机器, 所以装的时候比较谨慎, 记录下遇到的坑
+
+### 安装步骤
+
+#### step1 : 检测系统是否自带安装mysql
+```
+yum list installed | grep mysql
+```
+#### step2 : 删除系统自带mysql及依赖, 可能要删除多个,
+```
+yum -y remove mysql-libs.x86_64
+```
+
+#### step3: 给CentOS添加rpm源，并且选择较新的源(安装5.6或者5.7根据自己的需要)
+```
+# wget dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm
+# yum localinstall mysql-community-release-el6-5.noarch.rpm
+# yum repolist all | grep mysql
+# yum-config-manager --disable mysql55-community
+# yum-config-manager --disable mysql56-community
+# yum-config-manager --enable mysql57-community-dmr
+# yum repolist enabled | grep mysql
+```
+ps : yum-config-manager命令如果找不到的话, 可以通过如下命令安装, 系统默认是没有安装这个包的
+```
+yum -y install yum-utils
+```
+
+#### step4: 安装mysql 服务器
+```
+yum install mysql-community-server
+```
+
+#### 启动mysql, 设置开机启动
+```
+service mysqld start
+chkconfig --list | grep mysqld
+chkconfig mysqld on
+mysql_secure_installation
+```
+
+## 遇到的问题
+1 mysql启动失败, 查看mysql-error log, 如下图所示
+![result](/assets/mysql-error-1.png "结果")
+
+原因是/etc/my.cnf里配置的data_dir目录空间不足引起的, 更换目录即可
