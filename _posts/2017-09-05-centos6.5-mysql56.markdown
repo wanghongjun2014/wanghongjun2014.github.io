@@ -51,3 +51,6 @@ mysql_secure_installation
 ![result](/assets/mysql-error-1.png "结果")
 
 原因是/etc/my.cnf里配置的data_dir目录空间不足引起的, 更换目录即可
+
+参考文章：
+参考文档: [https://dev.mysql.com/doc/refman/5.7/en/linux-installation-yum-repo.html](https://dev.mysql.com/doc/refman/5.7/en/linux-installation-yum-repo.html "mysql5.6")
