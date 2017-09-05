@@ -9,16 +9,16 @@ tags: [php]
 
 ### 安装步骤
 
-#### step1 : 检测系统是否自带安装mysql
+step1 : 检测系统是否自带安装mysql
 ```
 yum list installed | grep mysql
 ```
-#### step2 : 删除系统自带mysql及依赖, 可能要删除多个,
+step2 : 删除系统自带mysql及依赖, 可能要删除多个,
 ```
 yum -y remove mysql-libs.x86_64
 ```
 
-#### step3: 给CentOS添加rpm源，并且选择较新的源(安装5.6或者5.7根据自己的需要)
+step3: 给CentOS添加rpm源，并且选择较新的源(安装5.6或者5.7根据自己的需要)
 ```
 # wget dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm
 # yum localinstall mysql-community-release-el6-5.noarch.rpm
@@ -33,12 +33,12 @@ ps : yum-config-manager命令如果找不到的话, 可以通过如下命令安�
 yum -y install yum-utils
 ```
 
-#### step4: 安装mysql 服务器
+step4: 安装mysql 服务器
 ```
 yum install mysql-community-server
 ```
 
-#### 启动mysql, 设置开机启动
+step5 : 启动mysql, 设置开机启动
 ```
 service mysqld start
 chkconfig --list | grep mysqld
