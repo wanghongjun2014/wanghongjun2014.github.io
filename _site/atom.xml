@@ -4,12 +4,72 @@
  <title></title>
  <link href="http://wanghongjun2014.github.io/atom.xml" rel="self"/>
  <link href="http://wanghongjun2014.github.io"/>
- <updated>2017-09-04T20:33:24-07:00</updated>
+ <updated>2017-11-07T21:52:50-08:00</updated>
  <author>
    <name>王洪军</name>
    <email>wanghongjun2014#163.com</email>
  </author>
 
+ 
+ <entry>
+   <title>php进程间通信</title>
+   <link href="http://wanghongjun2014.github.io/posts/thread-communication.html"/>
+   <updated>2017-09-19T00:00:00-07:00</updated>
+   <id>/posts/thread-communication</id>
+   <content type="html">&lt;p&gt;常见的进程通信方式有：消息队列、共享内存与信号量、管道、socket，注释和代码请在github中查看。
+github地址：&lt;a href=&quot;https://github.com/wanghongjun2014/php_thread_demo&quot; title=&quot;php thread&quot;&gt;https://github.com/wanghongjun2014/php_thread_demo&lt;/a&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>centos6.5安装mysql5.6/5.7</title>
+   <link href="http://wanghongjun2014.github.io/posts/centos6.5-mysql56.html"/>
+   <updated>2017-09-05T00:00:00-07:00</updated>
+   <id>/posts/centos6.5-mysql56</id>
+   <content type="html">&lt;p&gt;由于公司业务需要, 需要在一台线上机器装mysql5.6/5.7, 之前是装了mysql5.1(但是没有人用), 因为是线上机器, 所以装的时候比较谨慎, 记录下遇到的坑&lt;/p&gt;
+
+&lt;h3 id=&quot;安装步骤&quot;&gt;安装步骤&lt;/h3&gt;
+
+&lt;p&gt;step1 : 检测系统是否自带安装mysql&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;yum list installed | grep mysql
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;step2 : 删除系统自带mysql及依赖, 可能要删除多个,&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;yum -y remove mysql-libs.x86_64
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;step3: 给CentOS添加rpm源，并且选择较新的源(安装5.6或者5.7根据自己的需要)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# wget dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm
+# yum localinstall mysql-community-release-el6-5.noarch.rpm
+# yum repolist all | grep mysql
+# yum-config-manager --disable mysql55-community
+# yum-config-manager --disable mysql56-community
+# yum-config-manager --enable mysql57-community-dmr
+# yum repolist enabled | grep mysql
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;ps : yum-config-manager命令如果找不到的话, 可以通过如下命令安装, 系统默认是没有安装这个包的&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;yum -y install yum-utils
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;step4: 安装mysql 服务器&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;yum install mysql-community-server
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;step5 : 启动mysql, 设置开机启动&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;service mysqld start
+chkconfig --list | grep mysqld
+chkconfig mysqld on
+mysql_secure_installation
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;遇到的问题&quot;&gt;遇到的问题&lt;/h2&gt;
+&lt;p&gt;1 mysql启动失败, 查看mysql-error log, 如下图所示
+&lt;img src=&quot;/assets/mysql-error-1.png&quot; alt=&quot;result&quot; title=&quot;结果&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;原因是/etc/my.cnf里配置的data_dir目录空间不足引起的, 更换目录即可&lt;/p&gt;
+
+&lt;p&gt;参考文章：&lt;a href=&quot;https://dev.mysql.com/doc/refman/5.7/en/linux-installation-yum-repo.html&quot; title=&quot;mysql5.6&quot;&gt;https://dev.mysql.com/doc/refman/5.7/en/linux-installation-yum-repo.html&lt;/a&gt;&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>php的4种回调函数风格</title>

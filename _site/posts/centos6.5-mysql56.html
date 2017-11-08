@@ -4,9 +4,9 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="description" content="页面不存在：Page Not Found - 王洪军个人博客 - 作者:王洪军"/> 
-	
-    <title>页面不存在：Page Not Found - 王洪军个人博客</title>
+    <meta name="description" content="centos6.5安装mysql5.6/5.7 - 王洪军个人博客 - 作者:王洪军"/> 
+	<meta name="keywords" content="php"/>
+    <title>centos6.5安装mysql5.6/5.7 - 王洪军个人博客</title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet"/>
     <!-- Custom CSS -->
@@ -87,14 +87,95 @@
       <div class="row">
         <!-- Blog Entries Column -->
         <div class="col-md-8">
-          <p align="center">
-<h1></h1>Page Not Found!</h1>
-Please wait...
+          <!-- Navi -->
+<a href="/">首页</a>&nbsp;>&nbsp;<a href="/posts/code.html">技术</a>&nbsp;>&nbsp;正文
+<!-- Title -->
+<h3>centos6.5安装mysql5.6/5.7</h3>
+<b>标签：</b><a href="/tags.html#php"><i>php</i></a>
+<div class="post-date">
+	<span class="glyphicon glyphicon-time"></span>
+	2017-09-05
+</div>
 <br/>
-<br/>
-thanks!
-</p>
 
+<!-- content -->
+<div style="text-indent:2em;">
+<p>由于公司业务需要, 需要在一台线上机器装mysql5.6/5.7, 之前是装了mysql5.1(但是没有人用), 因为是线上机器, 所以装的时候比较谨慎, 记录下遇到的坑</p>
+
+<h3 id="安装步骤">安装步骤</h3>
+
+<p>step1 : 检测系统是否自带安装mysql</p>
+<pre><code>yum list installed | grep mysql
+</code></pre>
+<p>step2 : 删除系统自带mysql及依赖, 可能要删除多个,</p>
+<pre><code>yum -y remove mysql-libs.x86_64
+</code></pre>
+
+<p>step3: 给CentOS添加rpm源，并且选择较新的源(安装5.6或者5.7根据自己的需要)</p>
+<pre><code># wget dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm
+# yum localinstall mysql-community-release-el6-5.noarch.rpm
+# yum repolist all | grep mysql
+# yum-config-manager --disable mysql55-community
+# yum-config-manager --disable mysql56-community
+# yum-config-manager --enable mysql57-community-dmr
+# yum repolist enabled | grep mysql
+</code></pre>
+<p>ps : yum-config-manager命令如果找不到的话, 可以通过如下命令安装, 系统默认是没有安装这个包的</p>
+<pre><code>yum -y install yum-utils
+</code></pre>
+
+<p>step4: 安装mysql 服务器</p>
+<pre><code>yum install mysql-community-server
+</code></pre>
+
+<p>step5 : 启动mysql, 设置开机启动</p>
+<pre><code>service mysqld start
+chkconfig --list | grep mysqld
+chkconfig mysqld on
+mysql_secure_installation
+</code></pre>
+
+<h2 id="遇到的问题">遇到的问题</h2>
+<p>1 mysql启动失败, 查看mysql-error log, 如下图所示
+<img src="/assets/mysql-error-1.png" alt="result" title="结果" /></p>
+
+<p>原因是/etc/my.cnf里配置的data_dir目录空间不足引起的, 更换目录即可</p>
+
+<p>参考文章：<a href="https://dev.mysql.com/doc/refman/5.7/en/linux-installation-yum-repo.html" title="mysql5.6">https://dev.mysql.com/doc/refman/5.7/en/linux-installation-yum-repo.html</a></p>
+
+</div>
+
+<br/>
+<b>原创文章，转载请注明出处！</b>
+<br/>
+<b>本文链接：</b><a href="http://localhost:4000/posts/centos6.5-mysql56.html" title="">http://localhost:4000/posts/centos6.5-mysql56.html</a>
+
+<!-- next and previous -->
+<div style="margin-top:15px; margin-bottom:10px">
+  
+  <span class="next">
+    上篇：
+    <a href="/posts/php-four-callback.html">
+      php的4种回调函数风格
+    </a>
+  </span>
+   
+  
+  <div style="float:right">
+  <span class="prev" >
+    下篇：
+    <a href="/posts/thread-communication.html">
+      php进程间通信
+    </a>
+  </span>
+  </div>
+  
+</div>
+<hr>
+<!-- Blog Comments -->
+<div class="media">
+  请修改_includes/comment.html添加评论代码。 
+</div>
         </div>
         <!-- Blog Sidebar Widgets Column -->
         <div class="col-md-4">

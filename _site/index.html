@@ -89,6 +89,76 @@
           <!-- Loop output paged posts -->
 
 <div style="font-size:16px;">
+  <a href="/posts/thread-communication.html">
+    php进程间通信
+  </a> 
+  <div class="post-date">
+	2017-09-19
+  </div>
+</div>
+<hr>
+<p>常见的进程通信方式有：消息队列、共享内存与信号量、管道、socket，注释和代码请在github中查看。
+github地址：<a href="https://github.com/wanghongjun2014/php_thread_demo" title="php thread">https://github.com/wanghongjun2014/php_thread_demo</a></p>
+
+	<p><h4><a href="/posts/thread-communication.html">阅读全文 &raquo;</a></h4></p>
+<hr>
+
+<div style="font-size:16px;">
+  <a href="/posts/centos6.5-mysql56.html">
+    centos6.5安装mysql5.6/5.7
+  </a> 
+  <div class="post-date">
+	2017-09-05
+  </div>
+</div>
+<hr>
+<p>由于公司业务需要, 需要在一台线上机器装mysql5.6/5.7, 之前是装了mysql5.1(但是没有人用), 因为是线上机器, 所以装的时候比较谨慎, 记录下遇到的坑</p>
+
+<h3 id="安装步骤">安装步骤</h3>
+
+<p>step1 : 检测系统是否自带安装mysql</p>
+<pre><code>yum list installed | grep mysql
+</code></pre>
+<p>step2 : 删除系统自带mysql及依赖, 可能要删除多个,</p>
+<pre><code>yum -y remove mysql-libs.x86_64
+</code></pre>
+
+<p>step3: 给CentOS添加rpm源，并且选择较新的源(安装5.6或者5.7根据自己的需要)</p>
+<pre><code># wget dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm
+# yum localinstall mysql-community-release-el6-5.noarch.rpm
+# yum repolist all | grep mysql
+# yum-config-manager --disable mysql55-community
+# yum-config-manager --disable mysql56-community
+# yum-config-manager --enable mysql57-community-dmr
+# yum repolist enabled | grep mysql
+</code></pre>
+<p>ps : yum-config-manager命令如果找不到的话, 可以通过如下命令安装, 系统默认是没有安装这个包的</p>
+<pre><code>yum -y install yum-utils
+</code></pre>
+
+<p>step4: 安装mysql 服务器</p>
+<pre><code>yum install mysql-community-server
+</code></pre>
+
+<p>step5 : 启动mysql, 设置开机启动</p>
+<pre><code>service mysqld start
+chkconfig --list | grep mysqld
+chkconfig mysqld on
+mysql_secure_installation
+</code></pre>
+
+<h2 id="遇到的问题">遇到的问题</h2>
+<p>1 mysql启动失败, 查看mysql-error log, 如下图所示
+<img src="/assets/mysql-error-1.png" alt="result" title="结果" /></p>
+
+<p>原因是/etc/my.cnf里配置的data_dir目录空间不足引起的, 更换目录即可</p>
+
+<p>参考文章：<a href="https://dev.mysql.com/doc/refman/5.7/en/linux-installation-yum-repo.html" title="mysql5.6">https://dev.mysql.com/doc/refman/5.7/en/linux-installation-yum-repo.html</a></p>
+
+	<p><h4><a href="/posts/centos6.5-mysql56.html">阅读全文 &raquo;</a></h4></p>
+<hr>
+
+<div style="font-size:16px;">
   <a href="/posts/php-four-callback.html">
     php的4种回调函数风格
   </a> 
@@ -332,182 +402,6 @@ $subject-&gt;payoff('20K');
 	<p><h4><a href="/posts/HTTP_RAW_POST_DATA.html">阅读全文 &raquo;</a></h4></p>
 <hr>
 
-<div style="font-size:16px;">
-  <a href="/posts/create-image.html">
-    图片上生成文字, 或者图片上生成图片
-  </a> 
-  <div class="post-date">
-	2017-07-12
-  </div>
-</div>
-<hr>
-<p>存在我很脑子里的很长时间的一个观念终于改变了, 以前总喜欢搞些看起来高大上的代码, 不爱写业务代码, 喜欢钻研新技术, 新的工具,
-对老的技术嗤之以鼻, 对不喜欢的技术比如css, html等极度排斥, 现在觉的不管写什么, 其实都能锻炼你的某方面能力, 希望以后的自己
-可以放平心态, 什么都可以做, 能写php, python, shell, 做的了dba, 码的了vue, 写的了业务代码, 搞得了服务器, 成为一个小的全栈工程师,
-最近做的生成图片的功能比较多, 主要功能代码记录一下:</p>
-<pre><code>&lt;?php
-
-// 字体28-21,  32-24
-// 一行股票高度 141 , 两行股票高度 202
-$stockNum = 5;
-
-$mainTitleText = "- 6月21日值得关注潜力股 -";
-$font = '/usr/local/var/PingFang.ttc';
-$circle = '/usr/local/var/circle.png';
-$mainTitlePadding = padding($mainTitleText, 22.5);
-
-// 股票文本
-$text = array(
-    '西的我的', '网络', '发发福', 'dfd'
-);
-
-$padding = array();
-
-$circles = array(
-    array('/usr/local/var/circle.png'),
-    array('/usr/local/var/circle.png', '/usr/local/var/circle.png'),
-    array('/usr/local/var/circle.png', '/usr/local/var/circle.png', '/usr/local/var/circle.png'),
-    array('/usr/local/var/circle.png', '/usr/local/var/circle.png', '/usr/local/var/circle.png' , '/usr/local/var/circle.png'),
-    array('/usr/local/var/circle.png', '/usr/local/var/circle.png', '/usr/local/var/circle.png', '/usr/local/var/circle.png', '/usr/local/var/circle.png'),
-    array('/usr/local/var/circle.png', '/usr/local/var/circle.png', '/usr/local/var/circle.png', '/usr/local/var/circle.png', '/usr/local/var/circle.png', '/usr/local/var/circle.png'),
-);
-
-$count = count($text);
-$fontSize = 25;
-$backgroundHeight = ($count &gt; 3) ? 204 : 148;
-$im = imagecreatetruecolor(750, $backgroundHeight);
-
-// 定义各种颜色
-$white = imagecolorallocate($im, 255, 255, 255);
-$red = imagecolorallocate($im, 223, 84, 82);
-$black = imagecolorallocate($im, 0, 0, 0);
-$yellow = imagecolorallocate($im, 240, 140, 51);
-$blue = imagecolorallocate($im, 106, 142, 208);
-
-$colors = array(
-    array($red),
-    array($red, $yellow),
-    array($red, $yellow, $blue),
-    array($red, $yellow, $blue, $red),
-    array($red, $yellow, $yellow, $blue, $red),
-    array($blue, $red, $yellow, $yellow, $blue, $red),
-);
-// 创建底层画布
-imagefilledrectangle($im, 0, 0, 750, $backgroundHeight, $white);
-
-
-// 总共分为两排, 第一排的数量 ($count - 3) 个, 第二个 3个
-if ($count - 3 &gt; 0) {
-    // 主标题
-    imagettftext($im, 22.5, 0, (750 - $mainTitlePadding['width']) / 2, 52, $black, $font, $mainTitleText);
-
-    // 获得字体的宽度和高度
-    foreach ($text as $key =&gt; $value) {
-        $padding[] = padding($value, $fontSize);
-    }
-
-    $circle = $circles[$count - 1];
-    $color = $colors[$count - 1];
-
-    $before3Stocks = array_slice($text, 0, $count - 3, true);
-    $next3Stocks = array_slice($text, $count -3, 3, true);
-
-    $multi30 = count($before3Stocks) - 1 &gt; 0 ? count($before3Stocks) - 1 : 0;
-    $j = 0;
-    foreach ($before3Stocks as $before =&gt; $beforeStockName) {
-        $oneCircle = file_get_contents($circle[$before]);
-        $oneCircle = imagecreatefromstring($oneCircle);
-        imagecopyresized($im, $oneCircle, (750 - 196 * count($before3Stocks) - 30*$multi30) / 2 + 30 * $j + 196 * $j, 79,0,0,196, 48,imagesx($oneCircle),imagesy($oneCircle));
-        imagettftext($im, 26, 0, (750 - 196 * count($before3Stocks) - 30 * $multi30) / 2 + 196*$j + 30*$j + (196 - $padding[$before]['width']) / 2, 115, $color[$before], $font, $before3Stocks[$before]);
-        $j = $j + 1;
-    }
-
-    $oneCircle = ''; // 重新初始化
-
-    // 第二排
-    $i = 0;
-    foreach ($next3Stocks as $k =&gt; $stockName) {
-        $oneCircle = file_get_contents($circle[$k]);
-        $oneCircle = imagecreatefromstring($oneCircle);
-        imagecopyresized($im, $oneCircle, (750 - 196 * 3 - 30 *2) / 2 + 30 * $i + 196 * $i, 136,0,0,196, 48,imagesx($oneCircle),imagesy($oneCircle));
-        imagettftext($im, $fontSize, 0, (750 - 196 * 3 - 30*2) / 2 + 196 * $i + 30 * $i + (196 - $padding[$k]['width']) / 2, 76 + (48 - $padding[$k]['height']) / 2 + 30 + 60, $color[$k], $font, $stockName);
-        $i = $i + 1;
-    }
-
-} else {
-    // 主标题
-    imagettftext($im, 22.5, 0, (750 - $mainTitlePadding['width']) / 2, 52, $black, $font, $mainTitleText);
-
-    // 获得字体的宽度和高度
-    foreach ($text as $key =&gt; $value) {
-        $padding[] = padding($value, $fontSize);
-    }
-
-    $circle = $circles[$count - 1];
-    $color = $colors[$count - 1];
-    $multi30 = count($text) - 1 &gt; 0 ? count($text) - 1 : 0;
-    $j = 0;
-    foreach ($text as $k2 =&gt; $stockName) {
-        $oneCircle = file_get_contents($circle[$k2]);
-        $oneCircle = imagecreatefromstring($oneCircle);
-         imagecopyresized($im, $oneCircle, (750 - 196 * count($text) - 30*$multi30) / 2 + 30 * $j + 196 * $j, 79,0,0,196, 48,imagesx($oneCircle),imagesy($oneCircle));
-         imagettftext($im, 26, 0, (750 - 196 * count($text) - 30 * $multi30) / 2 + 196*$j + 30*$j + (196 - $padding[$k2]['width']) / 2, 115, $color[$k2], $font, $stockName);
-        $j = $j + 1;
-    }
-}
-
-
-header("Content-type: image/png");
-imagepng($im);
-imagedestroy($im);
-
-
-// 返回文案的高度和宽度
-function padding($text, $size)
-{
-    $font = $font = '/usr/local/var/PingFang.ttc';
-    $largeText  = imagettfbbox($size, 0, $font, $text);
-    $width = $largeText[2] - $largeText[6]; // 文字宽度
-    $height = $largeText[3] - $largeText[7];
-    return array(
-        'width' =&gt; $width,
-        'height' =&gt; $height
-    );
-}
-</code></pre>
-<p>结果如下:</p>
-
-<p><img src="/assets/create_image.png" alt="result" title="结果" /></p>
-
-
-	<p><h4><a href="/posts/create-image.html">阅读全文 &raquo;</a></h4></p>
-<hr>
-
-<div style="font-size:16px;">
-  <a href="/posts/mysql-error-log.html">
-    mysql正常运行偶尔会自动停止
-  </a> 
-  <div class="post-date">
-	2017-07-05
-  </div>
-</div>
-<hr>
-<p>一个外包项目的mysql数据库服务今晚上突然自己停止了, 回来查看mysqld进程确实没了, 然后查看mysql的error_log， 发现错误如下</p>
-
-<p><img src="/assets/mysql-error.png" alt="result" title="结果" /></p>
-
-<p>这个是因为mysql升级软件包之后, 一些表的结构发生变化导致的, 可以运行如下命令解决:</p>
-<pre><code>mysql_upgrade -u root -p
-</code></pre>
-
-<p>结果如下:</p>
-
-<p><img src="/assets/mysql-error-ok.png" alt="result" title="结果" /></p>
-
-
-	<p><h4><a href="/posts/mysql-error-log.html">阅读全文 &raquo;</a></h4></p>
-<hr>
-
 
 <!-- Pager indicator -->
 <ul class="pager">
@@ -592,6 +486,18 @@ function padding($text, $size)
                 <ul class="list-unstyled">
 				
                   <li>
+                    <a href="/posts/thread-communication.html">
+                      php进程间通信
+                    </a>
+                  </li>
+				
+                  <li>
+                    <a href="/posts/centos6.5-mysql56.html">
+                      centos6.5安装mysql5.6/5.7
+                    </a>
+                  </li>
+				
+                  <li>
                     <a href="/posts/php-four-callback.html">
                       php的4种回调函数风格
                     </a>
@@ -636,18 +542,6 @@ function padding($text, $size)
                   <li>
                     <a href="/posts/mysql-error-log.html">
                       mysql正常运行偶尔会自动停止
-                    </a>
-                  </li>
-				
-                  <li>
-                    <a href="/posts/python-type.html">
-                      python中用type来创建一个类
-                    </a>
-                  </li>
-				
-                  <li>
-                    <a href="/posts/nodejs.html">
-                      常用的各种linux系统安装nodejs
                     </a>
                   </li>
 				  
