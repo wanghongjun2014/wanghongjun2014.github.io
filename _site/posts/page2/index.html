@@ -89,6 +89,22 @@
           <!-- Loop output paged posts -->
 
 <div style="font-size:16px;">
+  <a href="/posts/HTTP_RAW_POST_DATA.html">
+    php7中$GLOBALS['HTTP_RAW_POST_DATA']获取不到值
+  </a> 
+  <div class="post-date">
+	2017-07-24
+  </div>
+</div>
+<hr>
+<p>今天微信开发的时候碰到了一个问题, 接收不到微信推送过来的消息, 后来查明是因为php7中$GLOBALS[‘HTTP_RAW_POST_DATA’]被废弃了,
+可以使用 file_get_contents( ‘php://input’ ) 来获取, 可以在代码中判断是否可以用 $GLOBALS[‘HTTP_RAW_POST_DATA’] 来获取值</p>
+
+
+	<p><h4><a href="/posts/HTTP_RAW_POST_DATA.html">阅读全文 &raquo;</a></h4></p>
+<hr>
+
+<div style="font-size:16px;">
   <a href="/posts/create-image.html">
     图片上生成文字, 或者图片上生成图片
   </a> 
@@ -507,45 +523,6 @@ move(int(count), 'A', 'B', 'C')
 	<p><h4><a href="/posts/unicode-utf8.html">阅读全文 &raquo;</a></h4></p>
 <hr>
 
-<div style="font-size:16px;">
-  <a href="/posts/php-java-aes.html">
-    php和java中对aes加密方式的不同
-  </a> 
-  <div class="post-date">
-	2017-04-21
-  </div>
-</div>
-<hr>
-<p>周末的时候写了一个联通代扣取话费需求的接口,由于文档中只给出了java aes加密的示例, 加密方式为PKCS5, 但是这种方
-式php中是不支持的(我用java的入参调试了n久, 结果都是错的, 坑了很长时间, 翻阅很多文档终于找到了方案), php的解决方案如下:</p>
-
-<pre><code> //加密函数
- function encrypt($plaintext, $key) {
-     $plaintext = pkcs5_pad($plaintext, 16);
-     return bin2hex(mcrypt_encrypt(MCRYPT_RIJNDAEL_128, hex2bin($key), $plaintext, MCRYPT_MODE_ECB));
- }
- 
- //解密函数
- function decrypt($encrypted, $key) {
-     $decrypted = mcrypt_decrypt(MCRYPT_RIJNDAEL_128, hex2bin($key), hex2bin($encrypted), MCRYPT_MODE_ECB);
-     $padSize = ord(substr($decrypted, -1));
-     return substr($decrypted, 0, $padSize*-1);
- }
- 
- //pad偏移函数
- function pkcs5_pad ($text, $blocksize)
- {
-     $pad = $blocksize - (strlen($text) % $blocksize);
-     return $text . str_repeat(chr($pad), $pad);
- }
-</code></pre>
-
-<p>参考文档: <a href="http://stackoverflow.com/questions/17835726/aes-encryption-using-java-and-php" title="aes">http://stackoverflow.com/questions/17835726/aes-encryption-using-java-and-php</a></p>
-
-
-	<p><h4><a href="/posts/php-java-aes.html">阅读全文 &raquo;</a></h4></p>
-<hr>
-
 
 <!-- Pager indicator -->
 <ul class="pager">
@@ -556,6 +533,12 @@ move(int(count), 'A', 'B', 'C')
     </a>
   </li>
     
+  <li class="next">
+    <a href="/posts/page3/index.html">
+      下一页 &rarr;
+    </a>
+  </li>
+  
 </ul>
         </div>
         <!-- Blog Sidebar Widgets Column -->
@@ -630,6 +613,12 @@ move(int(count), 'A', 'B', 'C')
                 <ul class="list-unstyled">
 				
                   <li>
+                    <a href="/posts/compile-explain-diff.1.html">
+                      解释型语言和编译型语言
+                    </a>
+                  </li>
+				
+                  <li>
                     <a href="/posts/thread-communication.html">
                       php进程间通信
                     </a>
@@ -680,12 +669,6 @@ move(int(count), 'A', 'B', 'C')
                   <li>
                     <a href="/posts/create-image.html">
                       图片上生成文字, 或者图片上生成图片
-                    </a>
-                  </li>
-				
-                  <li>
-                    <a href="/posts/mysql-error-log.html">
-                      mysql正常运行偶尔会自动停止
                     </a>
                   </li>
 				  

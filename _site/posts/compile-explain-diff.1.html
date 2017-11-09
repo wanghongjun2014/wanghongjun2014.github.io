@@ -4,9 +4,9 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="description" content="php和java中对aes加密方式的不同 - 王洪军个人博客 - 作者:王洪军"/> 
-	<meta name="keywords" content="aes,php,java"/>
-    <title>php和java中对aes加密方式的不同 - 王洪军个人博客</title>
+    <meta name="description" content="解释型语言和编译型语言 - 王洪军个人博客 - 作者:王洪军"/> 
+	<meta name="keywords" content="php"/>
+    <title>解释型语言和编译型语言 - 王洪军个人博客</title>
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet"/>
     <!-- Custom CSS -->
@@ -90,41 +90,28 @@
           <!-- Navi -->
 <a href="/">首页</a>&nbsp;>&nbsp;<a href="/posts/code.html">技术</a>&nbsp;>&nbsp;正文
 <!-- Title -->
-<h3>php和java中对aes加密方式的不同</h3>
-<b>标签：</b><a href="/tags.html#aes"><i>aes</i></a>, <a href="/tags.html#php"><i>php</i></a>, <a href="/tags.html#java"><i>java</i></a>
+<h3>解释型语言和编译型语言</h3>
+<b>标签：</b><a href="/tags.html#php"><i>php</i></a>
 <div class="post-date">
 	<span class="glyphicon glyphicon-time"></span>
-	2017-04-21
+	2017-11-08
 </div>
 <br/>
 
 <!-- content -->
 <div style="text-indent:2em;">
-<p>周末的时候写了一个联通代扣取话费需求的接口,由于文档中只给出了java aes加密的示例, 加密方式为PKCS5, 但是这种方
-式php中是不支持的(我用java的入参调试了n久, 结果都是错的, 坑了很长时间, 翻阅很多文档终于找到了方案), php的解决方案如下:</p>
+<p>最近在和朋友讨论编译型语言和解释型语言的一些细节, 整理了一下：</p>
 
-<pre><code> //加密函数
- function encrypt($plaintext, $key) {
-     $plaintext = pkcs5_pad($plaintext, 16);
-     return bin2hex(mcrypt_encrypt(MCRYPT_RIJNDAEL_128, hex2bin($key), $plaintext, MCRYPT_MODE_ECB));
- }
- 
- //解密函数
- function decrypt($encrypted, $key) {
-     $decrypted = mcrypt_decrypt(MCRYPT_RIJNDAEL_128, hex2bin($key), hex2bin($encrypted), MCRYPT_MODE_ECB);
-     $padSize = ord(substr($decrypted, -1));
-     return substr($decrypted, 0, $padSize*-1);
- }
- 
- //pad偏移函数
- function pkcs5_pad ($text, $blocksize)
- {
-     $pad = $blocksize - (strlen($text) % $blocksize);
-     return $text . str_repeat(chr($pad), $pad);
- }
-</code></pre>
+<p>1 传统意义上的所谓编译和解释, 区别在于代码是什么时候被翻译成目标CPU的指令， 这是一直以来大家更认可的更约定俗称的定义</p>
 
-<p>参考文档: <a href="http://stackoverflow.com/questions/17835726/aes-encryption-using-java-and-php" title="aes">http://stackoverflow.com/questions/17835726/aes-encryption-using-java-and-php</a></p>
+<p>2  对 C 语言或者其他编译型语言来说，编译生成了目标文件，而这个目标文件是针对特定的 CPU 体系的，
+为 ARM 生成的目标文件，不能被用于 MIPS 的 CPU。这段代码在编译过程中就已经被翻译成了目标 CPU 指令，所以，如果这个程序需要在另外一种 CPU 上面运行，这个代码就必须重新编译。</p>
+
+<p>3 对于各种非编译型语言（例如python/java）来说，同样也可能存在某种编译过程，但他们编译生成的通常是一种『平台无关』的中间代码，
+这种代码一般不是针对特定的 CPU 平台，他们是在运行过程中才被翻译成目标 CPU 指令的，因而，在 ARM CPU 上能执行，换到 MIPS 也能执行，换到 X86 也能执行，不需要重新对源代码进行编译。</p>
+
+<p>4 至于为什么会有虚拟机的存在？这个答案也很简单了，因为那些非编译型语言生成的并不是目标平台的代码，而是某种中间代码。而能够运行这种中间代码的机器并不广泛存在，所以我们在每个不同的平台中用软件模拟出这个假想平台的虚拟机，
+这个虚拟机执行这种中间代码，而虚拟机负责把代码转换成最终的目标平台上的指令。</p>
 
 
 </div>
@@ -132,20 +119,18 @@
 <br/>
 <b>原创文章，转载请注明出处！</b>
 <br/>
-<b>本文链接：</b><a href="http://localhost:4000/posts/php-java-aes.html" title="">http://localhost:4000/posts/php-java-aes.html</a>
+<b>本文链接：</b><a href="http://localhost:4000/posts/compile-explain-diff.1.html" title="">http://localhost:4000/posts/compile-explain-diff.1.html</a>
 
 <!-- next and previous -->
 <div style="margin-top:15px; margin-bottom:10px">
-   
   
-  <div style="float:right">
-  <span class="prev" >
-    下篇：
-    <a href="/posts/unicode-utf8.html">
-      acsii-unicode-utf8编码的来源以及关系
+  <span class="next">
+    上篇：
+    <a href="/posts/thread-communication.html">
+      php进程间通信
     </a>
   </span>
-  </div>
+   
   
 </div>
 <hr>

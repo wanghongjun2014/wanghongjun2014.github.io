@@ -89,6 +89,32 @@
           <!-- Loop output paged posts -->
 
 <div style="font-size:16px;">
+  <a href="/posts/compile-explain-diff.1.html">
+    解释型语言和编译型语言
+  </a> 
+  <div class="post-date">
+	2017-11-08
+  </div>
+</div>
+<hr>
+<p>最近在和朋友讨论编译型语言和解释型语言的一些细节, 整理了一下：</p>
+
+<p>1 传统意义上的所谓编译和解释, 区别在于代码是什么时候被翻译成目标CPU的指令， 这是一直以来大家更认可的更约定俗称的定义</p>
+
+<p>2  对 C 语言或者其他编译型语言来说，编译生成了目标文件，而这个目标文件是针对特定的 CPU 体系的，
+为 ARM 生成的目标文件，不能被用于 MIPS 的 CPU。这段代码在编译过程中就已经被翻译成了目标 CPU 指令，所以，如果这个程序需要在另外一种 CPU 上面运行，这个代码就必须重新编译。</p>
+
+<p>3 对于各种非编译型语言（例如python/java）来说，同样也可能存在某种编译过程，但他们编译生成的通常是一种『平台无关』的中间代码，
+这种代码一般不是针对特定的 CPU 平台，他们是在运行过程中才被翻译成目标 CPU 指令的，因而，在 ARM CPU 上能执行，换到 MIPS 也能执行，换到 X86 也能执行，不需要重新对源代码进行编译。</p>
+
+<p>4 至于为什么会有虚拟机的存在？这个答案也很简单了，因为那些非编译型语言生成的并不是目标平台的代码，而是某种中间代码。而能够运行这种中间代码的机器并不广泛存在，所以我们在每个不同的平台中用软件模拟出这个假想平台的虚拟机，
+这个虚拟机执行这种中间代码，而虚拟机负责把代码转换成最终的目标平台上的指令。</p>
+
+
+	<p><h4><a href="/posts/compile-explain-diff.1.html">阅读全文 &raquo;</a></h4></p>
+<hr>
+
+<div style="font-size:16px;">
   <a href="/posts/thread-communication.html">
     php进程间通信
   </a> 
@@ -386,22 +412,6 @@ $subject-&gt;payoff('20K');
 	<p><h4><a href="/posts/php-observe.html">阅读全文 &raquo;</a></h4></p>
 <hr>
 
-<div style="font-size:16px;">
-  <a href="/posts/HTTP_RAW_POST_DATA.html">
-    php7中$GLOBALS['HTTP_RAW_POST_DATA']获取不到值
-  </a> 
-  <div class="post-date">
-	2017-07-24
-  </div>
-</div>
-<hr>
-<p>今天微信开发的时候碰到了一个问题, 接收不到微信推送过来的消息, 后来查明是因为php7中$GLOBALS[‘HTTP_RAW_POST_DATA’]被废弃了,
-可以使用 file_get_contents( ‘php://input’ ) 来获取, 可以在代码中判断是否可以用 $GLOBALS[‘HTTP_RAW_POST_DATA’] 来获取值</p>
-
-
-	<p><h4><a href="/posts/HTTP_RAW_POST_DATA.html">阅读全文 &raquo;</a></h4></p>
-<hr>
-
 
 <!-- Pager indicator -->
 <ul class="pager">
@@ -486,6 +496,12 @@ $subject-&gt;payoff('20K');
                 <ul class="list-unstyled">
 				
                   <li>
+                    <a href="/posts/compile-explain-diff.1.html">
+                      解释型语言和编译型语言
+                    </a>
+                  </li>
+				
+                  <li>
                     <a href="/posts/thread-communication.html">
                       php进程间通信
                     </a>
@@ -536,12 +552,6 @@ $subject-&gt;payoff('20K');
                   <li>
                     <a href="/posts/create-image.html">
                       图片上生成文字, 或者图片上生成图片
-                    </a>
-                  </li>
-				
-                  <li>
-                    <a href="/posts/mysql-error-log.html">
-                      mysql正常运行偶尔会自动停止
                     </a>
                   </li>
 				  
