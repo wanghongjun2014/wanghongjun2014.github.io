@@ -10,8 +10,8 @@ tags: [php]
 1 编辑你本地的代码 .git/ 目录下的 config 文件,添加如下配置即可, 前提是开通代码库权限:  
 ```
 [remote "all"]
-    url = ssh://git@git.intra.weibo.com:2222/hongjun6/cron_monitor.git
-    url = git@github.com:wanghongjun2014/cron_monitor.git
+    url = ssh://git@git.xxxxxxx/user/cron_monitor.git
+    url = git@github.com:xxxxx/cron_monitor.git
 ```  
 其中每个url代表一个仓库, ssh 和 http 方式都可以  
 2 然后执行 git push all 命令即可
