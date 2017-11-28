@@ -1,0 +1,13 @@
+---
+layout: post
+category: "git"
+title:  "正向代理和反向代理的理解"
+tags: [php]
+---
+
+在知乎上看到了一篇关于讲解正向代理和反向代理的文章, 觉的还不错
+
+https://www.zhihu.com/question/24723688
+
+
+
