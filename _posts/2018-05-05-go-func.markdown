@@ -1,0 +1,15 @@
+---
+layout: post
+category: "code"
+title:  "go中变量函数方法被导出与首字母大写"
+tags: [go]
+---
+
+最近在写go相关代码，由于基础知识不够牢靠，被个小问题折腾了好久
+```
+﻿func (p *Student) FirstName() string {
+	return p.firstName
+}
+```
+在A包中定义了一个方法firstName(), 在B包中引入这个方法，一直提示找不到该方法，
+是因为在go中需要将方法名的首字母改成大写FirstName(), 才标识该方法可以被导出。
